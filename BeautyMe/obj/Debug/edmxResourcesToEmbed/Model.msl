@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="igroup193_prodModelStoreContainer" CdmEntityContainer="BeautyMeDBContext1">
+    <EntitySetMapping Name="Appointments">
+      <EntityTypeMapping TypeName="igroup193_prodModel.Appointment">
+        <MappingFragment StoreEntitySet="Appointment">
+          <ScalarProperty Name="Number_appointment" ColumnName="Number_appointment" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Start_time" ColumnName="Start_time" />
+          <ScalarProperty Name="End_time" ColumnName="End_time" />
+          <ScalarProperty Name="Is_client_house" ColumnName="Is_client_house" />
+          <ScalarProperty Name="Business_Number" ColumnName="Business_Number" />
+          <ScalarProperty Name="Appointment_status" ColumnName="Appointment_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Appointment_can_give_treatment">
+      <EntityTypeMapping TypeName="igroup193_prodModel.Appointment_can_give_treatment">
+        <MappingFragment StoreEntitySet="Appointment_can_give_treatment">
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="Type_treatment_Number" ColumnName="Type_treatment_Number" />
+          <ScalarProperty Name="Number_appointment" ColumnName="Number_appointment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Businesses">
+      <EntityTypeMapping TypeName="igroup193_prodModel.Business">
+        <MappingFragment StoreEntitySet="Business">
+          <ScalarProperty Name="Business_Number" ColumnName="Business_Number" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="AddressStreet" ColumnName="AddressStreet" />
+          <ScalarProperty Name="AddressHouseNumber" ColumnName="AddressHouseNumber" />
+          <ScalarProperty Name="AddressCity" ColumnName="AddressCity" />
+          <ScalarProperty Name="Is_client_house" ColumnName="Is_client_house" />
+          <ScalarProperty Name="Professional_ID_number" ColumnName="Professional_ID_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Business_can_give_treatment">
+      <EntityTypeMapping TypeName="igroup193_prodModel.Business_can_give_treatment">
+        <MappingFragment StoreEntitySet="Business_can_give_treatment">
+          <ScalarProperty Name="Type_treatment_Number" ColumnName="Type_treatment_Number" />
+          <ScalarProperty Name="Category_Number" ColumnName="Category_Number" />
+          <ScalarProperty Name="Business_Number" ColumnName="Business_Number" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Treatment_duration" ColumnName="Treatment_duration" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="igroup193_prodModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="Category_Number" ColumnName="Category_Number" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="igroup193_prodModel.Client">
+        <MappingFragment StoreEntitySet="Client">
+          <ScalarProperty Name="ID_number" ColumnName="ID_number" />
+          <ScalarProperty Name="First_name" ColumnName="First_name" />
+          <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+          <ScalarProperty Name="birth_date" ColumnName="birth_date" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="AddressStreet" ColumnName="AddressStreet" />
+          <ScalarProperty Name="AddressHouseNumber" ColumnName="AddressHouseNumber" />
+          <ScalarProperty Name="AddressCity" ColumnName="AddressCity" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Future_Appointment">
+      <EntityTypeMapping TypeName="igroup193_prodModel.Future_Appointment">
+        <MappingFragment StoreEntitySet="Future_Appointment">
+          <ScalarProperty Name="Future_appointment_number" ColumnName="Future_appointment_number" />
+          <ScalarProperty Name="AddressStreet" ColumnName="AddressStreet" />
+          <ScalarProperty Name="AddressHouseNumber" ColumnName="AddressHouseNumber" />
+          <ScalarProperty Name="AddressCity" ColumnName="AddressCity" />
+          <ScalarProperty Name="Appointment_status" ColumnName="Appointment_status" />
+          <ScalarProperty Name="Client_ID_number" ColumnName="Client_ID_number" />
+          <ScalarProperty Name="Type_treatment_Number" ColumnName="Type_treatment_Number" />
+          <ScalarProperty Name="Number_appointment" ColumnName="Number_appointment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Professionals">
+      <EntityTypeMapping TypeName="igroup193_prodModel.Professional">
+        <MappingFragment StoreEntitySet="Professional">
+          <ScalarProperty Name="ID_number" ColumnName="ID_number" />
+          <ScalarProperty Name="First_name" ColumnName="First_name" />
+          <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+          <ScalarProperty Name="birth_date" ColumnName="birth_date" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="AddressStreet" ColumnName="AddressStreet" />
+          <ScalarProperty Name="AddressHouseNumber" ColumnName="AddressHouseNumber" />
+          <ScalarProperty Name="AddressCity" ColumnName="AddressCity" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Review_Business">
+      <EntityTypeMapping TypeName="igroup193_prodModel.Review_Business">
+        <MappingFragment StoreEntitySet="Review_Business">
+          <ScalarProperty Name="Review_Number" ColumnName="Review_Number" />
+          <ScalarProperty Name="Cleanliness" ColumnName="Cleanliness" />
+          <ScalarProperty Name="Professionalism" ColumnName="Professionalism" />
+          <ScalarProperty Name="On_time" ColumnName="On_time" />
+          <ScalarProperty Name="Overall_rating" ColumnName="Overall_rating" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Professional_ID_number" ColumnName="Professional_ID_number" />
+          <ScalarProperty Name="Client_ID_number" ColumnName="Client_ID_number" />
+          <ScalarProperty Name="Business_Number" ColumnName="Business_Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Review_Client">
+      <EntityTypeMapping TypeName="igroup193_prodModel.Review_Client">
+        <MappingFragment StoreEntitySet="Review_Client">
+          <ScalarProperty Name="Review_Number" ColumnName="Review_Number" />
+          <ScalarProperty Name="Review_Date" ColumnName="Review_Date" />
+          <ScalarProperty Name="Is_come" ColumnName="Is_come" />
+          <ScalarProperty Name="Canceled_on_time" ColumnName="Canceled_on_time" />
+          <ScalarProperty Name="Arrived_on_time" ColumnName="Arrived_on_time" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Professional_ID_number" ColumnName="Professional_ID_number" />
+          <ScalarProperty Name="Client_ID_number" ColumnName="Client_ID_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="igroup193_prodModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Treatment_of_category">
+      <EntityTypeMapping TypeName="igroup193_prodModel.Treatment_of_category">
+        <MappingFragment StoreEntitySet="Treatment_of_category">
+          <ScalarProperty Name="number" ColumnName="number" />
+          <ScalarProperty Name="Type_treatment_Number" ColumnName="Type_treatment_Number" />
+          <ScalarProperty Name="Category_Number" ColumnName="Category_Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Type_Treatment">
+      <EntityTypeMapping TypeName="igroup193_prodModel.Type_Treatment">
+        <MappingFragment StoreEntitySet="Type_Treatment">
+          <ScalarProperty Name="Type_treatment_Number" ColumnName="Type_treatment_Number" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="igroup193_prodModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="igroup193_prodModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="igroup193_prodModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="igroup193_prodModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="igroup193_prodModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="igroup193_prodModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="igroup193_prodModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="igroup193_prodModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="igroup193_prodModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>
