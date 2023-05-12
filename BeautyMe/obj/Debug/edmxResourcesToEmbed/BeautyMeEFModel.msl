@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BeautyMeModelStoreContainer" CdmEntityContainer="BeautyMeDBContext">
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="BeautyMeModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="BeautyMeModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="BeautyMeModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="BeautyMeModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BeautyMeModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="BeautyMeModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BeautyMeModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="BeautyMeModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="BeautyMeModel.Store.sp_upgraddiagrams" />
+    <EntitySetMapping Name="Appointment">
+      <EntityTypeMapping TypeName="BeautyMeModel.Appointment">
+        <MappingFragment StoreEntitySet="Appointment">
+          <ScalarProperty Name="Appointment_status" ColumnName="Appointment_status" />
+          <ScalarProperty Name="Business_Number" ColumnName="Business_Number" />
+          <ScalarProperty Name="Is_client_house" ColumnName="Is_client_house" />
+          <ScalarProperty Name="End_time" ColumnName="End_time" />
+          <ScalarProperty Name="Start_time" ColumnName="Start_time" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Number_appointment" ColumnName="Number_appointment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Appointment_can_give_treatment">
+      <EntityTypeMapping TypeName="BeautyMeModel.Appointment_can_give_treatment">
+        <MappingFragment StoreEntitySet="Appointment_can_give_treatment">
+          <ScalarProperty Name="Number_appointment" ColumnName="Number_appointment" />
+          <ScalarProperty Name="Type_treatment_Number" ColumnName="Type_treatment_Number" />
+          <ScalarProperty Name="number" ColumnName="number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Business">
+      <EntityTypeMapping TypeName="BeautyMeModel.Business">
+        <MappingFragment StoreEntitySet="Business">
+          <ScalarProperty Name="Professional_ID_number" ColumnName="Professional_ID_number" />
+          <ScalarProperty Name="Is_client_house" ColumnName="Is_client_house" />
+          <ScalarProperty Name="AddressCity" ColumnName="AddressCity" />
+          <ScalarProperty Name="AddressHouseNumber" ColumnName="AddressHouseNumber" />
+          <ScalarProperty Name="AddressStreet" ColumnName="AddressStreet" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Business_Number" ColumnName="Business_Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Business_can_give_treatment">
+      <EntityTypeMapping TypeName="BeautyMeModel.Business_can_give_treatment">
+        <MappingFragment StoreEntitySet="Business_can_give_treatment">
+          <ScalarProperty Name="Treatment_duration" ColumnName="Treatment_duration" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Business_Number" ColumnName="Business_Number" />
+          <ScalarProperty Name="Category_Number" ColumnName="Category_Number" />
+          <ScalarProperty Name="Type_treatment_Number" ColumnName="Type_treatment_Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Category">
+      <EntityTypeMapping TypeName="BeautyMeModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Category_Number" ColumnName="Category_Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Client">
+      <EntityTypeMapping TypeName="BeautyMeModel.Client">
+        <MappingFragment StoreEntitySet="Client">
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="AddressCity" ColumnName="AddressCity" />
+          <ScalarProperty Name="AddressHouseNumber" ColumnName="AddressHouseNumber" />
+          <ScalarProperty Name="AddressStreet" ColumnName="AddressStreet" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="birth_date" ColumnName="birth_date" />
+          <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+          <ScalarProperty Name="First_name" ColumnName="First_name" />
+          <ScalarProperty Name="ID_number" ColumnName="ID_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Future_Appointment">
+      <EntityTypeMapping TypeName="BeautyMeModel.Future_Appointment">
+        <MappingFragment StoreEntitySet="Future_Appointment">
+          <ScalarProperty Name="Number_appointment" ColumnName="Number_appointment" />
+          <ScalarProperty Name="Type_treatment_Number" ColumnName="Type_treatment_Number" />
+          <ScalarProperty Name="Client_ID_number" ColumnName="Client_ID_number" />
+          <ScalarProperty Name="Appointment_status" ColumnName="Appointment_status" />
+          <ScalarProperty Name="AddressCity" ColumnName="AddressCity" />
+          <ScalarProperty Name="AddressHouseNumber" ColumnName="AddressHouseNumber" />
+          <ScalarProperty Name="AddressStreet" ColumnName="AddressStreet" />
+          <ScalarProperty Name="Future_appointment_number" ColumnName="Future_appointment_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Professional">
+      <EntityTypeMapping TypeName="BeautyMeModel.Professional">
+        <MappingFragment StoreEntitySet="Professional">
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="AddressCity" ColumnName="AddressCity" />
+          <ScalarProperty Name="AddressHouseNumber" ColumnName="AddressHouseNumber" />
+          <ScalarProperty Name="AddressStreet" ColumnName="AddressStreet" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="birth_date" ColumnName="birth_date" />
+          <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+          <ScalarProperty Name="First_name" ColumnName="First_name" />
+          <ScalarProperty Name="ID_number" ColumnName="ID_number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Review_Business">
+      <EntityTypeMapping TypeName="BeautyMeModel.Review_Business">
+        <MappingFragment StoreEntitySet="Review_Business">
+          <ScalarProperty Name="Business_Number" ColumnName="Business_Number" />
+          <ScalarProperty Name="Client_ID_number" ColumnName="Client_ID_number" />
+          <ScalarProperty Name="Professional_ID_number" ColumnName="Professional_ID_number" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Overall_rating" ColumnName="Overall_rating" />
+          <ScalarProperty Name="On_time" ColumnName="On_time" />
+          <ScalarProperty Name="Professionalism" ColumnName="Professionalism" />
+          <ScalarProperty Name="Cleanliness" ColumnName="Cleanliness" />
+          <ScalarProperty Name="Review_Number" ColumnName="Review_Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Review_Client">
+      <EntityTypeMapping TypeName="BeautyMeModel.Review_Client">
+        <MappingFragment StoreEntitySet="Review_Client">
+          <ScalarProperty Name="Client_ID_number" ColumnName="Client_ID_number" />
+          <ScalarProperty Name="Professional_ID_number" ColumnName="Professional_ID_number" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Arrived_on_time" ColumnName="Arrived_on_time" />
+          <ScalarProperty Name="Canceled_on_time" ColumnName="Canceled_on_time" />
+          <ScalarProperty Name="Is_come" ColumnName="Is_come" />
+          <ScalarProperty Name="Review_Date" ColumnName="Review_Date" />
+          <ScalarProperty Name="Review_Number" ColumnName="Review_Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="BeautyMeModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Treatment_of_category">
+      <EntityTypeMapping TypeName="BeautyMeModel.Treatment_of_category">
+        <MappingFragment StoreEntitySet="Treatment_of_category">
+          <ScalarProperty Name="Category_Number" ColumnName="Category_Number" />
+          <ScalarProperty Name="Type_treatment_Number" ColumnName="Type_treatment_Number" />
+          <ScalarProperty Name="number" ColumnName="number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Type_Treatment">
+      <EntityTypeMapping TypeName="BeautyMeModel.Type_Treatment">
+        <MappingFragment StoreEntitySet="Type_Treatment">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Type_treatment_Number" ColumnName="Type_treatment_Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
