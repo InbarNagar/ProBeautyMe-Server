@@ -38,7 +38,6 @@ namespace BeautyMeWEB.Controllers
             else
                 return Request.CreateResponse(HttpStatusCode.NotFound);
         }
-
         // Post: api/Business/OneBusiness פונקציה שמקבלת מספר עסק ומחזירה את העסק הספציפי
         [HttpPost]
         [Route("api/Business/OneBusiness/{business_num}")]
@@ -47,6 +46,7 @@ namespace BeautyMeWEB.Controllers
             BusinessDTO oneBusiness = db.Business.Where(a => a.Business_Number == business_num).Select(x => new BusinessDTO
             {
                 Business_Number = x.Business_Number,
+                About= x.About,
                 Name = x.Name,
                 AddressStreet = x.AddressStreet,
                 AddressHouseNumber = x.AddressHouseNumber,
@@ -59,7 +59,6 @@ namespace BeautyMeWEB.Controllers
             else
                 return Request.CreateResponse(HttpStatusCode.NotFound);
         }
-
         // Post: api/Post
         [HttpPost]
         [Route("api/Business/NewBusiness")]

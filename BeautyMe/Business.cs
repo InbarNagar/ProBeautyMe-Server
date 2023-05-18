@@ -18,9 +18,6 @@ namespace BeautyMe
         public Business()
         {
             this.Appointment = new HashSet<Appointment>();
-            this.Appointment1 = new HashSet<Appointment>();
-            this.Business_can_give_treatment = new HashSet<Business_can_give_treatment>();
-            this.Review_Business = new HashSet<Review_Business>();
         }
     
         public int Business_Number { get; set; }
@@ -30,16 +27,11 @@ namespace BeautyMe
         public string AddressCity { get; set; }
         public string Is_client_house { get; set; }
         public string Professional_ID_number { get; set; }
+        public string About { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Appointment> Appointment { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Appointment> Appointment1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Business_can_give_treatment> Business_can_give_treatment { get; set; }
         public virtual Professional Professional { get; set; }
         public virtual Professional Professional1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Review_Business> Review_Business { get; set; }
     }
 }

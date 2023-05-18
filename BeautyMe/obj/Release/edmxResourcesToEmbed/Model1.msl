@@ -11,6 +11,7 @@
           <ScalarProperty Name="Is_client_house" ColumnName="Is_client_house" />
           <ScalarProperty Name="Business_Number" ColumnName="Business_Number" />
           <ScalarProperty Name="Appointment_status" ColumnName="Appointment_status" />
+          <ScalarProperty Name="ID_Client" ColumnName="ID_Client" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -33,6 +34,7 @@
           <ScalarProperty Name="AddressCity" ColumnName="AddressCity" />
           <ScalarProperty Name="Is_client_house" ColumnName="Is_client_house" />
           <ScalarProperty Name="Professional_ID_number" ColumnName="Professional_ID_number" />
+          <ScalarProperty Name="About" ColumnName="About" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -118,6 +120,7 @@
           <ScalarProperty Name="Professional_ID_number" ColumnName="Professional_ID_number" />
           <ScalarProperty Name="Client_ID_number" ColumnName="Client_ID_number" />
           <ScalarProperty Name="Business_Number" ColumnName="Business_Number" />
+          <ScalarProperty Name="Number_appointment" ColumnName="Number_appointment" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -132,6 +135,7 @@
           <ScalarProperty Name="Comment" ColumnName="Comment" />
           <ScalarProperty Name="Professional_ID_number" ColumnName="Professional_ID_number" />
           <ScalarProperty Name="Client_ID_number" ColumnName="Client_ID_number" />
+          <ScalarProperty Name="Number_appointment" ColumnName="Number_appointment" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

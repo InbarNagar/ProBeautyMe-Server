@@ -26,8 +26,5 @@ namespace BeautyMe
         public Nullable<int> Number_appointment { get; set; }
     
         public virtual Appointment Appointment { get; set; }
-        public virtual Business Business { get; set; }
-        public virtual Client Client { get; set; }
-        public virtual Professional Professional { get; set; }
     }
 }

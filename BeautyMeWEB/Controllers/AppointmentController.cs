@@ -109,8 +109,30 @@ namespace BeautyMeWEB.Controllers
 
             }
         }
-
-
+        //תורים ללקוח
+        [HttpGet]
+        [Route("api/Appointment/AllAppointmentForClient/{ID_Client}")]
+        public HttpResponseMessage GetAllAppointmentForClient(string ID_Client)
+        {
+            List<AppointmentDTO> AllAppointment = db.Appointment.Where(a => a.ID_Client == ID_Client && a.ID_Client!=null).Select(x => new AppointmentDTO
+            {
+                Number_appointment = x.Number_appointment,
+                BusinessName=x.Business.Name,
+                Date = x.Date,
+                Start_time = x.Start_time,
+                End_time = x.End_time,
+                Is_client_house = x.Is_client_house,
+                Business_Number = x.Business_Number,
+                Appointment_status = x.Appointment_status,
+                AddressStreet = x.Business.AddressStreet,
+                AddressHouseNumber = x.Business.AddressHouseNumber,
+                AddressCity = x.Business.AddressCity
+            }).ToList();
+            if (AllAppointment != null)
+                return Request.CreateResponse(HttpStatusCode.OK, AllAppointment);
+            else
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+        }
         // Put: api/Put
         [HttpPut]
         [Route("api/Appointment/UpdateAppointment")]
@@ -159,6 +181,25 @@ namespace BeautyMeWEB.Controllers
             db.SaveChanges();
 
             return Ok("הנתונים נמחקו בהצלחה.");  // החזרת תשובה מתאימה לפי המצב
+        }
+        // קונטרולר לשינוי הסטטוס לפי לקוח
+        [HttpPut]
+        [Route("api/Appointment/changeStatus/{clientID}")]
+        public HttpResponseMessage ChangeStatusByClient(string clientID)
+        {
+            Appointment AppointmentToChangeStatus = db.Appointment.Where(x => x.ID_Client == clientID && x.Appointment_status== "Awaiting_approval").FirstOrDefault();
+            if (AppointmentToChangeStatus == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound, $"client ${clientID} has no appointments in dataBase!");
+            }
+
+            else
+            {
+                AppointmentToChangeStatus.Appointment_status = "Appointment_ended";
+
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, $"{AppointmentToChangeStatus.Number_appointment} updated in the dataBase");
+            }
         }
     }
 }

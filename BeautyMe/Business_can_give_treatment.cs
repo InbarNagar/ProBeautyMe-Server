@@ -20,7 +20,6 @@ namespace BeautyMe
         public decimal Price { get; set; }
         public System.TimeSpan Treatment_duration { get; set; }
     
-        public virtual Business Business { get; set; }
         public virtual Category Category { get; set; }
         public virtual Type_Treatment Type_Treatment { get; set; }
     }

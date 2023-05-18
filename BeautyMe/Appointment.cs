@@ -33,12 +33,7 @@ namespace BeautyMe
         public int Business_Number { get; set; }
         public string Appointment_status { get; set; }
         public string ID_Client { get; set; }
-        public string AddressStreet { get; set; }
-        public string AddressHouseNumber { get; set; }
-        public string AddressCity { get; set; }
     
-        public virtual Business Business { get; set; }
-        public virtual Business Business1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Appointment_can_give_treatment> Appointment_can_give_treatment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -49,6 +44,7 @@ namespace BeautyMe
         public virtual ICollection<Review_Business> Review_Business { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review_Client> Review_Client { get; set; }
+        public virtual Business Business { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Future_Appointment> Future_Appointment1 { get; set; }
     }
