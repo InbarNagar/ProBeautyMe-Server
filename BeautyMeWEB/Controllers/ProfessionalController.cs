@@ -184,6 +184,8 @@ namespace BeautyMeWEB.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound, "couldn't delete Proffesional from data base!");
             }
 
+
+
         }
     }
 }

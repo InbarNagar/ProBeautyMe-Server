@@ -97,6 +97,7 @@ namespace BeautyMeWEB.Controllers
             Business PrevB = db.Business.Where(a => a.Business_Number == newB.Business_Number).FirstOrDefault();
             if (PrevB != null)
             {
+                PrevB.Name = newB.Name;
                 PrevB.AddressStreet = newB.AddressStreet;
                 PrevB.AddressCity = newB.AddressCity;
                 PrevB.AddressHouseNumber = newB.AddressHouseNumber;
