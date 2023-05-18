@@ -12,7 +12,7 @@ namespace BeautyMeWEB.Controllers
     public class UserController : ApiController
     {
         // GET: api/User
-        BeautyMeDBContext db = new BeautyMeDBContext   ();
+        BeautyMeDBContext db = new BeautyMeDBContext();
         [HttpPost]
         [Route("api/user/checkUser")]
         public HttpResponseMessage CheckUser([FromBody] SearchPeopleDTO user)
@@ -29,6 +29,8 @@ namespace BeautyMeWEB.Controllers
                 AddressStreet = x.AddressStreet,
                 AddressHouseNumber = x.AddressHouseNumber,
                 AddressCity = x.AddressCity,
+                Facebook_link = x.Facebook_link,
+                Instagram_link = x.Instagram_link,
                 password = x.password,
                 userType = "Cli"
 

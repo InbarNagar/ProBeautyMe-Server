@@ -16,7 +16,12 @@
 //    {
 //        //public static bool IsIdNumberUnique(string idNumber)
 //        //{
+<<<<<<< HEAD
 //        //    BeautyMeDBContext db = new BeautyMeDBContext();
+=======
+//        //
+//        db = new BeautyMeDBContext();
+>>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
 //        //    string id_number = db.Client.FirstOrDefault(i => i.ID_number == idNumber).ID_number;
 //        //    if (id_number == null) // אם אין ת.ז כזה בטבלת לקוחות ייחזור TRUE
 //        //    {

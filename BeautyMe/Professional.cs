@@ -19,7 +19,10 @@ namespace BeautyMe
         {
             this.Business = new HashSet<Business>();
             this.Business1 = new HashSet<Business>();
+<<<<<<< HEAD
             this.Review_Business = new HashSet<Review_Business>();
+=======
+>>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
             this.Review_Client = new HashSet<Review_Client>();
         }
     
@@ -40,8 +43,11 @@ namespace BeautyMe
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Business> Business1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+<<<<<<< HEAD
         public virtual ICollection<Review_Business> Review_Business { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+=======
+>>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
         public virtual ICollection<Review_Client> Review_Client { get; set; }
     }
 }

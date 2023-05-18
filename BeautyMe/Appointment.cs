@@ -20,6 +20,8 @@ namespace BeautyMe
             this.Appointment_can_give_treatment = new HashSet<Appointment_can_give_treatment>();
             this.Appointment_can_give_treatment1 = new HashSet<Appointment_can_give_treatment>();
             this.Future_Appointment = new HashSet<Future_Appointment>();
+            this.Review_Business = new HashSet<Review_Business>();
+            this.Review_Client = new HashSet<Review_Client>();
             this.Future_Appointment1 = new HashSet<Future_Appointment>();
         }
     
@@ -30,8 +32,8 @@ namespace BeautyMe
         public string Is_client_house { get; set; }
         public int Business_Number { get; set; }
         public string Appointment_status { get; set; }
+        public string ID_Client { get; set; }
     
-        public virtual Business Business { get; set; }
         public virtual Business Business1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Appointment_can_give_treatment> Appointment_can_give_treatment { get; set; }
@@ -39,6 +41,11 @@ namespace BeautyMe
         public virtual ICollection<Appointment_can_give_treatment> Appointment_can_give_treatment1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Future_Appointment> Future_Appointment { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Review_Business> Review_Business { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Review_Client> Review_Client { get; set; }
+        public virtual Business Business { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Future_Appointment> Future_Appointment1 { get; set; }
     }

@@ -8,7 +8,11 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+<<<<<<< HEAD
     <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
+=======
+    <LastActiveSolutionConfig>Release|Any CPU</LastActiveSolutionConfig>
+>>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
     <Controller_SelectedScaffolderID>ApiControllerWithActionsScaffolder</Controller_SelectedScaffolderID>
     <Controller_SelectedScaffolderCategoryPath>root/Common/Web API</Controller_SelectedScaffolderCategoryPath>
     <WebStackScaffolding_ControllerDialogWidth>600.208695652174</WebStackScaffolding_ControllerDialogWidth>
@@ -17,7 +21,11 @@
     <WebStackScaffolding_IsReferencingScriptLibrariesSelected>True</WebStackScaffolding_IsReferencingScriptLibrariesSelected>
     <WebStackScaffolding_LayoutPageFile />
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
+<<<<<<< HEAD
     <NameOfLastUsedPublishProfile>C:\Users\Inbar\Downloads\vs %282%29\vs\BeautyMeWEB\Properties\PublishProfiles\FolderProfile9.pubxml</NameOfLastUsedPublishProfile>
+=======
+    <NameOfLastUsedPublishProfile>C:\Users\ofirt\Downloads\vs\BeautyMeWEB\Properties\PublishProfiles\FolderProfile8.pubxml</NameOfLastUsedPublishProfile>
+>>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
