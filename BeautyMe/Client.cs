@@ -17,9 +17,9 @@ namespace BeautyMe
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Client()
         {
+            this.Appointment = new HashSet<Appointment>();
             this.Future_Appointment = new HashSet<Future_Appointment>();
             this.Future_Appointment1 = new HashSet<Future_Appointment>();
-
             this.Review_Client = new HashSet<Review_Client>();
         }
     
@@ -37,13 +37,15 @@ namespace BeautyMe
         public string Facebook_link { get; set; }
         public string Instagram_link { get; set; }
         public byte[] Image { get; set; }
+        public string token { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Appointment> Appointment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Future_Appointment> Future_Appointment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Future_Appointment> Future_Appointment1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
         public virtual ICollection<Review_Client> Review_Client { get; set; }
     }
 }

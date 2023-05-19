@@ -74,6 +74,7 @@
           <ScalarProperty Name="Facebook_link" ColumnName="Facebook_link" />
           <ScalarProperty Name="Instagram_link" ColumnName="Instagram_link" />
           <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="token" ColumnName="token" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -105,6 +106,7 @@
           <ScalarProperty Name="AddressHouseNumber" ColumnName="AddressHouseNumber" />
           <ScalarProperty Name="AddressCity" ColumnName="AddressCity" />
           <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="token" ColumnName="token" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -17,7 +17,7 @@ namespace BeautyMeWEB.Controllers
 {
     public class ClientController : ApiController
     {
-        
+
         BeautyMeDBContext db = new BeautyMeDBContext();
         // GET: Client
         [HttpGet]
@@ -62,9 +62,10 @@ namespace BeautyMeWEB.Controllers
                 AddressStreet = x.AddressStreet,
                 AddressHouseNumber = x.AddressHouseNumber,
                 AddressCity = x.AddressCity,
-                Facebook_link= x.Facebook_link,
-                Instagram_link= x.Instagram_link,
-                password = x.password
+                Facebook_link = x.Facebook_link,
+                Instagram_link = x.Instagram_link,
+                password = x.password,
+                token=x.token
             }).FirstOrDefault();
             if (oneClient != null)
                 return Request.CreateResponse(HttpStatusCode.OK, oneClient);
@@ -119,6 +120,7 @@ namespace BeautyMeWEB.Controllers
                     Facebook_link = x.Facebook_link,
                     Instagram_link = x.Instagram_link,
                     password = x.password
+
                 };
                 db.Client.Add(newClient);
                 db.SaveChanges();
@@ -147,7 +149,7 @@ namespace BeautyMeWEB.Controllers
                 prevC.First_name = newC.First_name;
                 prevC.Last_name = newC.Last_name;
                 prevC.Instagram_link = newC.Instagram_link;
-                prevC.Facebook_link= newC.Facebook_link;
+                prevC.Facebook_link = newC.Facebook_link;
                 db.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK, $"Client {prevC.ID_number} had been updated!");
             }
@@ -173,6 +175,19 @@ namespace BeautyMeWEB.Controllers
             }
 
         }
+
+        [HttpPost]
+        [Route("api/Client/OneClientToken/{ID_number}/{token}")]
+        public HttpResponseMessage SaveTokenUser(string ID_number, string token)
+        {
+            Client oneClient = db.Client.Where(a => a.ID_number == ID_number).FirstOrDefault();
+            oneClient.token = token;
+            db.SaveChanges();
+            if (oneClient != null)
+                return Request.CreateResponse(HttpStatusCode.OK,"ok");
+            else
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+        } 
     }
 }
 

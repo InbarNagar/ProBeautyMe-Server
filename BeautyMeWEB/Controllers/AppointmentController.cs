@@ -14,6 +14,9 @@ using System.Data.Entity;
 using HttpDeleteAttribute = System.Web.Http.HttpDeleteAttribute;
 using HttpPutAttribute = System.Web.Http.HttpPutAttribute;
 using System.Data.Entity.Infrastructure;
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Data;
 
 namespace BeautyMeWEB.Controllers
 {
@@ -110,30 +113,30 @@ namespace BeautyMeWEB.Controllers
 
             }
         }
-        //תורים ללקוח
-        [HttpGet]
-        [Route("api/Appointment/AllAppointmentForClient/{ID_Client}")]
-        public HttpResponseMessage GetAllAppointmentForClient(string ID_Client)
-        {
-            List<AppointmentDTO> AllAppointment = db.Appointment.Where(a => a.ID_Client == ID_Client && a.ID_Client!=null).Select(x => new AppointmentDTO
-            {
-                Number_appointment = x.Number_appointment,
-                BusinessName=x.Business.Name,
-                Date = x.Date,
-                Start_time = x.Start_time,
-                End_time = x.End_time,
-                Is_client_house = x.Is_client_house,
-                Business_Number = x.Business_Number,
-                Appointment_status = x.Appointment_status,
-                AddressStreet = x.Business.AddressStreet,
-                AddressHouseNumber = x.Business.AddressHouseNumber,
-                AddressCity = x.Business.AddressCity
-            }).ToList();
-            if (AllAppointment != null)
-                return Request.CreateResponse(HttpStatusCode.OK, AllAppointment);
-            else
-                return Request.CreateResponse(HttpStatusCode.NotFound);
-        }
+        ////תורים ללקוח
+        //[HttpGet]
+        //[Route("api/Appointment/AllAppointmentForClient/{ID_Client}")]
+        //public HttpResponseMessage GetAllAppointmentForClient(string ID_Client)
+        //{
+        //    List<AppointmentDTO> AllAppointment = db.Appointment.Where(a => a.ID_Client == ID_Client && a.ID_Client!=null).Select(x => new AppointmentDTO
+        //    {
+        //        Number_appointment = x.Number_appointment,
+        //        BusinessName=x.Business.Name,
+        //        Date = x.Date,
+        //        Start_time = x.Start_time,
+        //        End_time = x.End_time,
+        //        Is_client_house = x.Is_client_house,
+        //        Business_Number = x.Business_Number,
+        //        Appointment_status = x.Appointment_status,
+        //        AddressStreet = x.Business.AddressStreet,
+        //        AddressHouseNumber = x.Business.AddressHouseNumber,
+        //        AddressCity = x.Business.AddressCity
+        //    }).ToList();
+        //    if (AllAppointment != null)
+        //        return Request.CreateResponse(HttpStatusCode.OK, AllAppointment);
+        //    else
+        //        return Request.CreateResponse(HttpStatusCode.NotFound);
+        //}
         // Put: api/Put
         [HttpPut]
         [Route("api/Appointment/UpdateAppointment")]
@@ -202,6 +205,43 @@ namespace BeautyMeWEB.Controllers
                 return Request.CreateResponse(HttpStatusCode.OK, $"{AppointmentToChangeStatus.Number_appointment} updated in the dataBase");
             }
         }
+
+        [HttpPost]
+        [Route("api/Appointment/AllAppointmentForClient")]
+        public HttpResponseMessage GetAllAppointmentForClient([FromBody] ClientDTO x)
+        {
+            string ID_Client = x.ID_number;
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["BeautyMeDB"].ConnectionString);
+            string query = @"select A.*, p.token,B.*
+             from Appointment A inner join Business B ON A.Business_Number=b.Business_Number inner join Client C 
+             on A.ID_Client= c.ID_number inner join Professional p on p.ID_number=b.Professional_ID_number
+             where ID_Client=@ID_Client";
+
+            SqlDataAdapter adpter = new SqlDataAdapter(query, con);
+            adpter.SelectCommand.Parameters.AddWithValue("@ID_Client", ID_Client);
+            DataSet ds = new DataSet();
+            adpter.Fill(ds, "Appointment");
+            DataTable dt = ds.Tables["Appointment"];
+            return Request.CreateResponse(HttpStatusCode.OK, dt);
+        }
+
+        [HttpPost]
+        [Route("api/Appointment/AllAppointment")]
+        public HttpResponseMessage GetAllAppointment([FromBody]object x)
+        {
+           
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["BeautyMeDB"].ConnectionString);
+            string query = @"select A.*, p.token,B.*
+             from Appointment A inner join Business B ON A.Business_Number=b.Business_Number  inner join Professional p on p.ID_number=b.Professional_ID_number";
+            SqlDataAdapter adpter = new SqlDataAdapter(query, con);
+  
+            DataSet ds = new DataSet();
+            adpter.Fill(ds, "Appointment2");
+            DataTable dt = ds.Tables["Appointment2"];
+            return Request.CreateResponse(HttpStatusCode.OK, dt);
+        }
+
+
     }
 }
 

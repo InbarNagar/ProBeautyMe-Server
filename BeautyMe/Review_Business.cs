@@ -23,10 +23,8 @@ namespace BeautyMe
         public string Professional_ID_number { get; set; }
         public string Client_ID_number { get; set; }
         public int Business_Number { get; set; }
-
         public Nullable<int> Number_appointment { get; set; }
     
         public virtual Appointment Appointment { get; set; }
-
     }
 }

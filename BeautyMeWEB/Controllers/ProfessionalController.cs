@@ -59,7 +59,8 @@ namespace BeautyMeWEB.Controllers
                 AddressStreet = x.AddressStreet,
                 AddressHouseNumber = x.AddressHouseNumber,
                 AddressCity = x.AddressCity,
-                password = x.password
+                password = x.password,
+                token=x.token
                 
             }).FirstOrDefault();
             if (oneProfessional != null)
@@ -186,6 +187,19 @@ namespace BeautyMeWEB.Controllers
 
 
 
+        }
+
+        [HttpPost]
+        [Route("api/Client/OneProfessionalToken/{ID_number}/{token}")]
+        public HttpResponseMessage SaveTokenUser(string ID_number, string token)
+        {
+            Professional onepro = db.Professional.Where(a => a.ID_number == ID_number).FirstOrDefault();
+            onepro.token = token;
+            db.SaveChanges();
+            if (onepro != null)
+                return Request.CreateResponse(HttpStatusCode.OK, "ok");
+            else
+                return Request.CreateResponse(HttpStatusCode.NotFound);
         }
     }
 }

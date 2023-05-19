@@ -20,6 +20,7 @@ namespace BeautyMeWEB.DTO
         public string password;
         public int Business_Number;
         public string userType;
+        public string token;
 
     }
 }

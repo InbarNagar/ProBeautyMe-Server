@@ -19,8 +19,6 @@ namespace BeautyMe
         {
             this.Business = new HashSet<Business>();
             this.Business1 = new HashSet<Business>();
-
-
             this.Review_Client = new HashSet<Review_Client>();
         }
     
@@ -35,13 +33,13 @@ namespace BeautyMe
         public string AddressHouseNumber { get; set; }
         public string AddressCity { get; set; }
         public string password { get; set; }
+        public string token { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Business> Business { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Business> Business1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
         public virtual ICollection<Review_Client> Review_Client { get; set; }
     }
 }

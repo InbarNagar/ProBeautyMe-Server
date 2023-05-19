@@ -18,6 +18,7 @@
     <NavigationProperty Name="Review_Business" Relationship="Self.FK__Review_Bu__Numbe__2022C2A6" FromRole="Appointment" ToRole="Review_Business" />
     <NavigationProperty Name="Review_Client" Relationship="Self.FK__Review_Cl__Numbe__2116E6DF" FromRole="Appointment" ToRole="Review_Client" />
     <NavigationProperty Name="Business" Relationship="Self.FK_Business_BusinessNumber" FromRole="Appointment" ToRole="Business" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_Client_ID_Client" FromRole="Appointment" ToRole="Client" />
     <NavigationProperty Name="Future_Appointment1" Relationship="Self.fk_delete_appointment" FromRole="Appointment" ToRole="Future_Appointment" />
   </EntityType>
   <EntityType Name="Appointment_can_give_treatment">
@@ -90,6 +91,8 @@
     <Property Name="Facebook_link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Instagram_link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="token" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Appointment" Relationship="Self.FK_Client_ID_Client" FromRole="Client" ToRole="Appointment" />
     <NavigationProperty Name="Future_Appointment" Relationship="Self.FK__Future_Ap__Clien__725BF7F6" FromRole="Client" ToRole="Future_Appointment" />
     <NavigationProperty Name="Future_Appointment1" Relationship="Self.FK__Future_Ap__Clien__753864A1" FromRole="Client" ToRole="Future_Appointment" />
     <NavigationProperty Name="Review_Client" Relationship="Self.FK__Review_Cl__Clien__41B8C09B" FromRole="Client" ToRole="Review_Client" />
@@ -127,6 +130,7 @@
     <Property Name="AddressHouseNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="AddressCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="token" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Business" Relationship="Self.FK__Business__Profes__2AD55B43" FromRole="Professional" ToRole="Business" />
     <NavigationProperty Name="Business1" Relationship="Self.FK__Business__Profes__2BC97F7C" FromRole="Professional" ToRole="Business" />
     <NavigationProperty Name="Review_Client" Relationship="Self.FK__Review_Cl__Profe__40C49C62" FromRole="Professional" ToRole="Review_Client" />
@@ -159,6 +163,8 @@
     <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Professional_ID_number" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="Client_ID_number" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Number_appointment" Type="Int32" />
+    <NavigationProperty Name="Appointment" Relationship="Self.FK__Review_Cl__Numbe__2116E6DF" FromRole="Review_Client" ToRole="Appointment" />
     <NavigationProperty Name="Client" Relationship="Self.FK__Review_Cl__Clien__41B8C09B" FromRole="Review_Client" ToRole="Client" />
     <NavigationProperty Name="Professional" Relationship="Self.FK__Review_Cl__Profe__40C49C62" FromRole="Review_Client" ToRole="Professional" />
   </EntityType>
@@ -266,6 +272,18 @@
       </Principal>
       <Dependent Role="Appointment">
         <PropertyRef Name="Business_Number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Client_ID_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+    <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="ID_number" />
+      </Principal>
+      <Dependent Role="Appointment">
+        <PropertyRef Name="ID_Client" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -467,6 +485,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_Business_BusinessNumber" Association="Self.FK_Business_BusinessNumber">
       <End Role="Business" EntitySet="Business" />
+      <End Role="Appointment" EntitySet="Appointment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Client_ID_Client" Association="Self.FK_Client_ID_Client">
+      <End Role="Client" EntitySet="Client" />
       <End Role="Appointment" EntitySet="Appointment" />
     </AssociationSet>
     <AssociationSet Name="fk_delete_appointment" Association="Self.fk_delete_appointment">
