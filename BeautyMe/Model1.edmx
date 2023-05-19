@@ -16,10 +16,9 @@
           <Property Name="Is_client_house" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Business_Number" Type="int" Nullable="false" />
           <Property Name="Appointment_status" Type="varchar" MaxLength="20" Nullable="false" />
-<<<<<<< HEAD
-=======
+
           <Property Name="ID_Client" Type="nchar" MaxLength="10" />
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
         </EntityType>
         <EntityType Name="Appointment_can_give_treatment">
           <Key>
@@ -42,10 +41,9 @@
           <Property Name="AddressCity" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Is_client_house" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Professional_ID_number" Type="nchar" MaxLength="10" Nullable="false" />
-<<<<<<< HEAD
-=======
+
           <Property Name="About" Type="nvarchar(max)" />
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
         </EntityType>
         <EntityType Name="Business_can_give_treatment">
           <Key>
@@ -133,10 +131,9 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
           <Property Name="Professional_ID_number" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Client_ID_number" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Business_Number" Type="int" Nullable="false" />
-<<<<<<< HEAD
-=======
+
           <Property Name="Number_appointment" Type="int" />
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
         </EntityType>
         <EntityType Name="Review_Client">
           <Key>
@@ -150,10 +147,9 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
           <Property Name="Comment" Type="nvarchar(max)" />
           <Property Name="Professional_ID_number" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Client_ID_number" Type="nchar" MaxLength="10" Nullable="false" />
-<<<<<<< HEAD
-=======
+
           <Property Name="Number_appointment" Type="int" />
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -182,35 +178,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
           <Property Name="Type_treatment_Number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-<<<<<<< HEAD
-        <Association Name="FK__Appointme__Busin__4D2A7347">
-          <End Role="Business" Type="Self.Business" Multiplicity="1" />
-          <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Business">
-              <PropertyRef Name="Business_Number" />
-            </Principal>
-            <Dependent Role="Appointment">
-              <PropertyRef Name="Business_Number" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Appointme__Busin__4E1E9780">
-          <End Role="Business" Type="Self.Business" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Business">
-              <PropertyRef Name="Business_Number" />
-            </Principal>
-            <Dependent Role="Appointment">
-              <PropertyRef Name="Business_Number" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-=======
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
         <Association Name="FK__Appointme__Numbe__7EC1CEDB">
           <End Role="Appointment" Type="Self.Appointment" Multiplicity="1" />
           <End Role="Appointment_can_give_treatment" Type="Self.Appointment_can_give_treatment" Multiplicity="*" />
@@ -249,21 +217,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-<<<<<<< HEAD
-        <Association Name="FK__Business___Busin__075714DC">
-          <End Role="Business" Type="Self.Business" Multiplicity="1" />
-          <End Role="Business_can_give_treatment" Type="Self.Business_can_give_treatment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Business">
-              <PropertyRef Name="Business_Number" />
-            </Principal>
-            <Dependent Role="Business_can_give_treatment">
-              <PropertyRef Name="Business_Number" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-=======
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
         <Association Name="FK__Business___Categ__0662F0A3">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
           <End Role="Business_can_give_treatment" Type="Self.Business_can_give_treatment" Multiplicity="*" />
@@ -364,41 +318,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-<<<<<<< HEAD
-        <Association Name="FK__Review_Bu__Busin__79FD19BE">
-          <End Role="Business" Type="Self.Business" Multiplicity="1" />
-          <End Role="Review_Business" Type="Self.Review_Business" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Business">
-              <PropertyRef Name="Business_Number" />
-            </Principal>
-            <Dependent Role="Review_Business">
-              <PropertyRef Name="Business_Number" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Review_Bu__Clien__7908F585">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="Review_Business" Type="Self.Review_Business" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="ID_number" />
-            </Principal>
-            <Dependent Role="Review_Business">
-              <PropertyRef Name="Client_ID_number" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Review_Bu__Profe__7814D14C">
-          <End Role="Professional" Type="Self.Professional" Multiplicity="1" />
-          <End Role="Review_Business" Type="Self.Review_Business" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Professional">
-              <PropertyRef Name="ID_number" />
-            </Principal>
-            <Dependent Role="Review_Business">
-              <PropertyRef Name="Professional_ID_number" />
-=======
+
         <Association Name="FK__Review_Bu__Numbe__2022C2A6">
           <End Role="Appointment" Type="Self.Appointment" Multiplicity="0..1" />
           <End Role="Review_Business" Type="Self.Review_Business" Multiplicity="*" />
@@ -408,7 +328,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
             </Principal>
             <Dependent Role="Review_Business">
               <PropertyRef Name="Number_appointment" />
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -424,8 +344,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-<<<<<<< HEAD
-=======
+
         <Association Name="FK__Review_Cl__Numbe__2116E6DF">
           <End Role="Appointment" Type="Self.Appointment" Multiplicity="0..1" />
           <End Role="Review_Client" Type="Self.Review_Client" Multiplicity="*" />
@@ -438,7 +357,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
         <Association Name="FK__Review_Cl__Profe__40C49C62">
           <End Role="Professional" Type="Self.Professional" Multiplicity="1" />
           <End Role="Review_Client" Type="Self.Review_Client" Multiplicity="*" />
@@ -475,8 +394,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-<<<<<<< HEAD
-=======
+
         <Association Name="FK_Business_BusinessNumber">
           <End Role="Business" Type="Self.Business" Multiplicity="1" />
           <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
@@ -489,7 +407,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
         <Association Name="fk_delete_appointment">
           <End Role="Appointment" Type="Self.Appointment" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -518,17 +436,8 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Treatment_of_category" EntityType="Self.Treatment_of_category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Type_Treatment" EntityType="Self.Type_Treatment" Schema="dbo" store:Type="Tables" />
-<<<<<<< HEAD
-          <AssociationSet Name="FK__Appointme__Busin__4D2A7347" Association="Self.FK__Appointme__Busin__4D2A7347">
-            <End Role="Business" EntitySet="Business" />
-            <End Role="Appointment" EntitySet="Appointment" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Appointme__Busin__4E1E9780" Association="Self.FK__Appointme__Busin__4E1E9780">
-            <End Role="Business" EntitySet="Business" />
-            <End Role="Appointment" EntitySet="Appointment" />
-          </AssociationSet>
-=======
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
+
           <AssociationSet Name="FK__Appointme__Numbe__7EC1CEDB" Association="Self.FK__Appointme__Numbe__7EC1CEDB">
             <End Role="Appointment" EntitySet="Appointment" />
             <End Role="Appointment_can_give_treatment" EntitySet="Appointment_can_give_treatment" />
@@ -541,13 +450,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
             <End Role="Type_Treatment" EntitySet="Type_Treatment" />
             <End Role="Appointment_can_give_treatment" EntitySet="Appointment_can_give_treatment" />
           </AssociationSet>
-<<<<<<< HEAD
-          <AssociationSet Name="FK__Business___Busin__075714DC" Association="Self.FK__Business___Busin__075714DC">
-            <End Role="Business" EntitySet="Business" />
-            <End Role="Business_can_give_treatment" EntitySet="Business_can_give_treatment" />
-          </AssociationSet>
-=======
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
           <AssociationSet Name="FK__Business___Categ__0662F0A3" Association="Self.FK__Business___Categ__0662F0A3">
             <End Role="Category" EntitySet="Category" />
             <End Role="Business_can_give_treatment" EntitySet="Business_can_give_treatment" />
@@ -580,7 +483,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
             <End Role="Type_Treatment" EntitySet="Type_Treatment" />
             <End Role="Future_Appointment" EntitySet="Future_Appointment" />
           </AssociationSet>
-<<<<<<< HEAD
+
           <AssociationSet Name="FK__Review_Bu__Busin__79FD19BE" Association="Self.FK__Review_Bu__Busin__79FD19BE">
             <End Role="Business" EntitySet="Business" />
             <End Role="Review_Business" EntitySet="Review_Business" />
@@ -591,23 +494,19 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
           </AssociationSet>
           <AssociationSet Name="FK__Review_Bu__Profe__7814D14C" Association="Self.FK__Review_Bu__Profe__7814D14C">
             <End Role="Professional" EntitySet="Professional" />
-=======
-          <AssociationSet Name="FK__Review_Bu__Numbe__2022C2A6" Association="Self.FK__Review_Bu__Numbe__2022C2A6">
-            <End Role="Appointment" EntitySet="Appointment" />
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
             <End Role="Review_Business" EntitySet="Review_Business" />
           </AssociationSet>
           <AssociationSet Name="FK__Review_Cl__Clien__41B8C09B" Association="Self.FK__Review_Cl__Clien__41B8C09B">
             <End Role="Client" EntitySet="Client" />
             <End Role="Review_Client" EntitySet="Review_Client" />
           </AssociationSet>
-<<<<<<< HEAD
-=======
+
           <AssociationSet Name="FK__Review_Cl__Numbe__2116E6DF" Association="Self.FK__Review_Cl__Numbe__2116E6DF">
             <End Role="Appointment" EntitySet="Appointment" />
             <End Role="Review_Client" EntitySet="Review_Client" />
           </AssociationSet>
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
           <AssociationSet Name="FK__Review_Cl__Profe__40C49C62" Association="Self.FK__Review_Cl__Profe__40C49C62">
             <End Role="Professional" EntitySet="Professional" />
             <End Role="Review_Client" EntitySet="Review_Client" />
@@ -620,13 +519,12 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
             <End Role="Type_Treatment" EntitySet="Type_Treatment" />
             <End Role="Treatment_of_category" EntitySet="Treatment_of_category" />
           </AssociationSet>
-<<<<<<< HEAD
-=======
+
           <AssociationSet Name="FK_Business_BusinessNumber" Association="Self.FK_Business_BusinessNumber">
             <End Role="Business" EntitySet="Business" />
             <End Role="Appointment" EntitySet="Appointment" />
           </AssociationSet>
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
           <AssociationSet Name="fk_delete_appointment" Association="Self.fk_delete_appointment">
             <End Role="Appointment" EntitySet="Appointment" />
             <End Role="Future_Appointment" EntitySet="Future_Appointment" />
@@ -648,13 +546,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
           <Property Name="Is_client_house" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Business_Number" Type="Int32" Nullable="false" />
           <Property Name="Appointment_status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-<<<<<<< HEAD
-          <NavigationProperty Name="Business" Relationship="Self.FK__Appointme__Busin__4D2A7347" FromRole="Appointment" ToRole="Business" />
-          <NavigationProperty Name="Business1" Relationship="Self.FK__Appointme__Busin__4E1E9780" FromRole="Appointment" ToRole="Business" />
-          <NavigationProperty Name="Appointment_can_give_treatment" Relationship="Self.FK__Appointme__Numbe__7EC1CEDB" FromRole="Appointment" ToRole="Appointment_can_give_treatment" />
-          <NavigationProperty Name="Appointment_can_give_treatment1" Relationship="Self.FK__Appointme__Numbe__7FB5F314" FromRole="Appointment" ToRole="Appointment_can_give_treatment" />
-          <NavigationProperty Name="Future_Appointment" Relationship="Self.FK__Future_Ap__Numbe__74444068" FromRole="Appointment" ToRole="Future_Appointment" />
-=======
+
           <Property Name="ID_Client" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Appointment_can_give_treatment" Relationship="Self.FK__Appointme__Numbe__7EC1CEDB" FromRole="Appointment" ToRole="Appointment_can_give_treatment" />
           <NavigationProperty Name="Appointment_can_give_treatment1" Relationship="Self.FK__Appointme__Numbe__7FB5F314" FromRole="Appointment" ToRole="Appointment_can_give_treatment" />
@@ -662,7 +554,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
           <NavigationProperty Name="Review_Business" Relationship="Self.FK__Review_Bu__Numbe__2022C2A6" FromRole="Appointment" ToRole="Review_Business" />
           <NavigationProperty Name="Review_Client" Relationship="Self.FK__Review_Cl__Numbe__2116E6DF" FromRole="Appointment" ToRole="Review_Client" />
           <NavigationProperty Name="Business" Relationship="Self.FK_Business_BusinessNumber" FromRole="Appointment" ToRole="Business" />
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
           <NavigationProperty Name="Future_Appointment1" Relationship="Self.fk_delete_appointment" FromRole="Appointment" ToRole="Future_Appointment" />
         </EntityType>
         <EntityType Name="Appointment_can_give_treatment">
@@ -689,19 +581,13 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
           <Property Name="AddressCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Is_client_house" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Professional_ID_number" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-<<<<<<< HEAD
-          <NavigationProperty Name="Appointment" Relationship="Self.FK__Appointme__Busin__4D2A7347" FromRole="Business" ToRole="Appointment" />
-          <NavigationProperty Name="Appointment1" Relationship="Self.FK__Appointme__Busin__4E1E9780" FromRole="Business" ToRole="Appointment" />
-          <NavigationProperty Name="Business_can_give_treatment" Relationship="Self.FK__Business___Busin__075714DC" FromRole="Business" ToRole="Business_can_give_treatment" />
-          <NavigationProperty Name="Professional" Relationship="Self.FK__Business__Profes__2AD55B43" FromRole="Business" ToRole="Professional" />
-          <NavigationProperty Name="Professional1" Relationship="Self.FK__Business__Profes__2BC97F7C" FromRole="Business" ToRole="Professional" />
-          <NavigationProperty Name="Review_Business" Relationship="Self.FK__Review_Bu__Busin__79FD19BE" FromRole="Business" ToRole="Review_Business" />
-=======
+
+
           <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Appointment" Relationship="Self.FK_Business_BusinessNumber" FromRole="Business" ToRole="Appointment" />
           <NavigationProperty Name="Professional" Relationship="Self.FK__Business__Profes__2AD55B43" FromRole="Business" ToRole="Professional" />
           <NavigationProperty Name="Professional1" Relationship="Self.FK__Business__Profes__2BC97F7C" FromRole="Business" ToRole="Professional" />
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
         </EntityType>
         <EntityType Name="Business_can_give_treatment">
           <Key>
@@ -714,10 +600,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
           <Property Name="Business_Number" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Treatment_duration" Type="Time" Nullable="false" Precision="7" />
-<<<<<<< HEAD
-          <NavigationProperty Name="Business" Relationship="Self.FK__Business___Busin__075714DC" FromRole="Business_can_give_treatment" ToRole="Business" />
-=======
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
           <NavigationProperty Name="Category" Relationship="Self.FK__Business___Categ__0662F0A3" FromRole="Business_can_give_treatment" ToRole="Category" />
           <NavigationProperty Name="Type_Treatment" Relationship="Self.FK__Business___Type___056ECC6A" FromRole="Business_can_give_treatment" ToRole="Type_Treatment" />
         </EntityType>
@@ -750,10 +633,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Future_Appointment" Relationship="Self.FK__Future_Ap__Clien__725BF7F6" FromRole="Client" ToRole="Future_Appointment" />
           <NavigationProperty Name="Future_Appointment1" Relationship="Self.FK__Future_Ap__Clien__753864A1" FromRole="Client" ToRole="Future_Appointment" />
-<<<<<<< HEAD
-          <NavigationProperty Name="Review_Business" Relationship="Self.FK__Review_Bu__Clien__7908F585" FromRole="Client" ToRole="Review_Business" />
-=======
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
           <NavigationProperty Name="Review_Client" Relationship="Self.FK__Review_Cl__Clien__41B8C09B" FromRole="Client" ToRole="Review_Client" />
         </EntityType>
         <EntityType Name="Future_Appointment">
@@ -791,10 +671,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
           <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Business" Relationship="Self.FK__Business__Profes__2AD55B43" FromRole="Professional" ToRole="Business" />
           <NavigationProperty Name="Business1" Relationship="Self.FK__Business__Profes__2BC97F7C" FromRole="Professional" ToRole="Business" />
-<<<<<<< HEAD
-          <NavigationProperty Name="Review_Business" Relationship="Self.FK__Review_Bu__Profe__7814D14C" FromRole="Professional" ToRole="Review_Business" />
-=======
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
           <NavigationProperty Name="Review_Client" Relationship="Self.FK__Review_Cl__Profe__40C49C62" FromRole="Professional" ToRole="Review_Client" />
         </EntityType>
         <EntityType Name="Review_Business">
@@ -810,14 +687,10 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
           <Property Name="Professional_ID_number" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Client_ID_number" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Business_Number" Type="Int32" Nullable="false" />
-<<<<<<< HEAD
-          <NavigationProperty Name="Business" Relationship="Self.FK__Review_Bu__Busin__79FD19BE" FromRole="Review_Business" ToRole="Business" />
-          <NavigationProperty Name="Client" Relationship="Self.FK__Review_Bu__Clien__7908F585" FromRole="Review_Business" ToRole="Client" />
-          <NavigationProperty Name="Professional" Relationship="Self.FK__Review_Bu__Profe__7814D14C" FromRole="Review_Business" ToRole="Professional" />
-=======
+
           <Property Name="Number_appointment" Type="Int32" />
           <NavigationProperty Name="Appointment" Relationship="Self.FK__Review_Bu__Numbe__2022C2A6" FromRole="Review_Business" ToRole="Appointment" />
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
         </EntityType>
         <EntityType Name="Review_Client">
           <Key>
@@ -831,11 +704,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
           <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Professional_ID_number" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Client_ID_number" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-<<<<<<< HEAD
-=======
-          <Property Name="Number_appointment" Type="Int32" />
-          <NavigationProperty Name="Appointment" Relationship="Self.FK__Review_Cl__Numbe__2116E6DF" FromRole="Review_Client" ToRole="Appointment" />
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
           <NavigationProperty Name="Client" Relationship="Self.FK__Review_Cl__Clien__41B8C09B" FromRole="Review_Client" ToRole="Client" />
           <NavigationProperty Name="Professional" Relationship="Self.FK__Review_Cl__Profe__40C49C62" FromRole="Review_Client" ToRole="Professional" />
         </EntityType>
@@ -872,35 +741,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
           <NavigationProperty Name="Future_Appointment" Relationship="Self.FK__Future_Ap__Type___73501C2F" FromRole="Type_Treatment" ToRole="Future_Appointment" />
           <NavigationProperty Name="Treatment_of_category" Relationship="Self.FK__Treatment__Type___0A338187" FromRole="Type_Treatment" ToRole="Treatment_of_category" />
         </EntityType>
-<<<<<<< HEAD
-        <Association Name="FK__Appointme__Busin__4D2A7347">
-          <End Role="Business" Type="Self.Business" Multiplicity="1" />
-          <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Business">
-              <PropertyRef Name="Business_Number" />
-            </Principal>
-            <Dependent Role="Appointment">
-              <PropertyRef Name="Business_Number" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Appointme__Busin__4E1E9780">
-          <End Role="Business" Type="Self.Business" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Appointment" Type="Self.Appointment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Business">
-              <PropertyRef Name="Business_Number" />
-            </Principal>
-            <Dependent Role="Appointment">
-              <PropertyRef Name="Business_Number" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-=======
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
         <Association Name="FK__Appointme__Numbe__7EC1CEDB">
           <End Role="Appointment" Type="Self.Appointment" Multiplicity="1" />
           <End Role="Appointment_can_give_treatment" Type="Self.Appointment_can_give_treatment" Multiplicity="*" />
@@ -939,8 +780,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-<<<<<<< HEAD
-=======
+
         <Association Name="FK__Review_Bu__Numbe__2022C2A6">
           <End Role="Appointment" Type="Self.Appointment" Multiplicity="0..1" />
           <End Role="Review_Business" Type="Self.Review_Business" Multiplicity="*" />
@@ -977,7 +817,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
         <Association Name="fk_delete_appointment">
           <End Role="Appointment" Type="Self.Appointment" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -1004,21 +844,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-<<<<<<< HEAD
-        <Association Name="FK__Business___Busin__075714DC">
-          <End Role="Business" Type="Self.Business" Multiplicity="1" />
-          <End Role="Business_can_give_treatment" Type="Self.Business_can_give_treatment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Business">
-              <PropertyRef Name="Business_Number" />
-            </Principal>
-            <Dependent Role="Business_can_give_treatment">
-              <PropertyRef Name="Business_Number" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-=======
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
         <Association Name="FK__Business__Profes__2AD55B43">
           <End Role="Professional" Type="Self.Professional" Multiplicity="1" />
           <End Role="Business" Type="Self.Business" Multiplicity="*" />
@@ -1045,21 +871,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-<<<<<<< HEAD
-        <Association Name="FK__Review_Bu__Busin__79FD19BE">
-          <End Role="Business" Type="Self.Business" Multiplicity="1" />
-          <End Role="Review_Business" Type="Self.Review_Business" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Business">
-              <PropertyRef Name="Business_Number" />
-            </Principal>
-            <Dependent Role="Review_Business">
-              <PropertyRef Name="Business_Number" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-=======
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
         <Association Name="FK__Business___Categ__0662F0A3">
           <End Role="Category" Type="Self.Category" Multiplicity="1" />
           <End Role="Business_can_give_treatment" Type="Self.Business_can_give_treatment" Multiplicity="*" />
@@ -1122,21 +934,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-<<<<<<< HEAD
-        <Association Name="FK__Review_Bu__Clien__7908F585">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="Review_Business" Type="Self.Review_Business" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="ID_number" />
-            </Principal>
-            <Dependent Role="Review_Business">
-              <PropertyRef Name="Client_ID_number" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-=======
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
         <Association Name="FK__Review_Cl__Clien__41B8C09B">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
           <End Role="Review_Client" Type="Self.Review_Client" Multiplicity="*" />
@@ -1161,21 +959,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-<<<<<<< HEAD
-        <Association Name="FK__Review_Bu__Profe__7814D14C">
-          <End Role="Professional" Type="Self.Professional" Multiplicity="1" />
-          <End Role="Review_Business" Type="Self.Review_Business" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Professional">
-              <PropertyRef Name="ID_number" />
-            </Principal>
-            <Dependent Role="Review_Business">
-              <PropertyRef Name="Professional_ID_number" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-=======
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
         <Association Name="FK__Review_Cl__Profe__40C49C62">
           <End Role="Professional" Type="Self.Professional" Multiplicity="1" />
           <End Role="Review_Client" Type="Self.Review_Client" Multiplicity="*" />
@@ -1214,17 +998,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="Treatment_of_category" EntityType="Self.Treatment_of_category" />
           <EntitySet Name="Type_Treatment" EntityType="Self.Type_Treatment" />
-<<<<<<< HEAD
-          <AssociationSet Name="FK__Appointme__Busin__4D2A7347" Association="Self.FK__Appointme__Busin__4D2A7347">
-            <End Role="Business" EntitySet="Business" />
-            <End Role="Appointment" EntitySet="Appointment" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Appointme__Busin__4E1E9780" Association="Self.FK__Appointme__Busin__4E1E9780">
-            <End Role="Business" EntitySet="Business" />
-            <End Role="Appointment" EntitySet="Appointment" />
-          </AssociationSet>
-=======
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
           <AssociationSet Name="FK__Appointme__Numbe__7EC1CEDB" Association="Self.FK__Appointme__Numbe__7EC1CEDB">
             <End Role="Appointment" EntitySet="Appointment" />
             <End Role="Appointment_can_give_treatment" EntitySet="Appointment_can_give_treatment" />
@@ -1237,8 +1011,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
             <End Role="Appointment" EntitySet="Appointment" />
             <End Role="Future_Appointment" EntitySet="Future_Appointment" />
           </AssociationSet>
-<<<<<<< HEAD
-=======
+
           <AssociationSet Name="FK__Review_Bu__Numbe__2022C2A6" Association="Self.FK__Review_Bu__Numbe__2022C2A6">
             <End Role="Appointment" EntitySet="Appointment" />
             <End Role="Review_Business" EntitySet="Review_Business" />
@@ -1251,7 +1024,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
             <End Role="Business" EntitySet="Business" />
             <End Role="Appointment" EntitySet="Appointment" />
           </AssociationSet>
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
           <AssociationSet Name="fk_delete_appointment" Association="Self.fk_delete_appointment">
             <End Role="Appointment" EntitySet="Appointment" />
             <End Role="Future_Appointment" EntitySet="Future_Appointment" />
@@ -1260,13 +1033,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
             <End Role="Type_Treatment" EntitySet="Type_Treatment" />
             <End Role="Appointment_can_give_treatment" EntitySet="Appointment_can_give_treatment" />
           </AssociationSet>
-<<<<<<< HEAD
-          <AssociationSet Name="FK__Business___Busin__075714DC" Association="Self.FK__Business___Busin__075714DC">
-            <End Role="Business" EntitySet="Business" />
-            <End Role="Business_can_give_treatment" EntitySet="Business_can_give_treatment" />
-          </AssociationSet>
-=======
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
           <AssociationSet Name="FK__Business__Profes__2AD55B43" Association="Self.FK__Business__Profes__2AD55B43">
             <End Role="Professional" EntitySet="Professional" />
             <End Role="Business" EntitySet="Business" />
@@ -1275,13 +1042,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
             <End Role="Professional" EntitySet="Professional" />
             <End Role="Business" EntitySet="Business" />
           </AssociationSet>
-<<<<<<< HEAD
-          <AssociationSet Name="FK__Review_Bu__Busin__79FD19BE" Association="Self.FK__Review_Bu__Busin__79FD19BE">
-            <End Role="Business" EntitySet="Business" />
-            <End Role="Review_Business" EntitySet="Review_Business" />
-          </AssociationSet>
-=======
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
           <AssociationSet Name="FK__Business___Categ__0662F0A3" Association="Self.FK__Business___Categ__0662F0A3">
             <End Role="Category" EntitySet="Category" />
             <End Role="Business_can_give_treatment" EntitySet="Business_can_give_treatment" />
@@ -1302,13 +1063,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
             <End Role="Client" EntitySet="Client" />
             <End Role="Future_Appointment" EntitySet="Future_Appointment" />
           </AssociationSet>
-<<<<<<< HEAD
-          <AssociationSet Name="FK__Review_Bu__Clien__7908F585" Association="Self.FK__Review_Bu__Clien__7908F585">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="Review_Business" EntitySet="Review_Business" />
-          </AssociationSet>
-=======
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
           <AssociationSet Name="FK__Review_Cl__Clien__41B8C09B" Association="Self.FK__Review_Cl__Clien__41B8C09B">
             <End Role="Client" EntitySet="Client" />
             <End Role="Review_Client" EntitySet="Review_Client" />
@@ -1317,13 +1072,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
             <End Role="Type_Treatment" EntitySet="Type_Treatment" />
             <End Role="Future_Appointment" EntitySet="Future_Appointment" />
           </AssociationSet>
-<<<<<<< HEAD
-          <AssociationSet Name="FK__Review_Bu__Profe__7814D14C" Association="Self.FK__Review_Bu__Profe__7814D14C">
-            <End Role="Professional" EntitySet="Professional" />
-            <End Role="Review_Business" EntitySet="Review_Business" />
-          </AssociationSet>
-=======
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
           <AssociationSet Name="FK__Review_Cl__Profe__40C49C62" Association="Self.FK__Review_Cl__Profe__40C49C62">
             <End Role="Professional" EntitySet="Professional" />
             <End Role="Review_Client" EntitySet="Review_Client" />
@@ -1349,10 +1098,9 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
                 <ScalarProperty Name="Is_client_house" ColumnName="Is_client_house" />
                 <ScalarProperty Name="Business_Number" ColumnName="Business_Number" />
                 <ScalarProperty Name="Appointment_status" ColumnName="Appointment_status" />
-<<<<<<< HEAD
-=======
+
                 <ScalarProperty Name="ID_Client" ColumnName="ID_Client" />
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1375,10 +1123,9 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
                 <ScalarProperty Name="AddressCity" ColumnName="AddressCity" />
                 <ScalarProperty Name="Is_client_house" ColumnName="Is_client_house" />
                 <ScalarProperty Name="Professional_ID_number" ColumnName="Professional_ID_number" />
-<<<<<<< HEAD
-=======
+
                 <ScalarProperty Name="About" ColumnName="About" />
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1464,10 +1211,9 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
                 <ScalarProperty Name="Professional_ID_number" ColumnName="Professional_ID_number" />
                 <ScalarProperty Name="Client_ID_number" ColumnName="Client_ID_number" />
                 <ScalarProperty Name="Business_Number" ColumnName="Business_Number" />
-<<<<<<< HEAD
-=======
+
                 <ScalarProperty Name="Number_appointment" ColumnName="Number_appointment" />
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1482,10 +1228,9 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="Professional_ID_number" ColumnName="Professional_ID_number" />
                 <ScalarProperty Name="Client_ID_number" ColumnName="Client_ID_number" />
-<<<<<<< HEAD
-=======
+
                 <ScalarProperty Name="Number_appointment" ColumnName="Number_appointment" />
->>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

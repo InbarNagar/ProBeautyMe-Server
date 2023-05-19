@@ -85,3 +85,15 @@ C:\Users\Inbar\Downloads\vs (2)\vs\BeautyMe\obj\Debug\BeautyMe.dll
 C:\Users\Inbar\Downloads\vs (2)\vs\BeautyMe\obj\Debug\BeautyMe.pdb
 =======
 >>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905
+C:\Users\Inbar\Desktop\Beauty_Me_Server_Side\BeautyMe\obj\Debug\BeautyMe.dll
+C:\Users\Inbar\Desktop\Beauty_Me_Server_Side\BeautyMe\obj\Debug\BeautyMe.pdb
+C:\Users\Inbar\Desktop\Beauty_Me_Server_Side\BeautyMe\obj\Debug\BeautyMe.csproj.AssemblyReference.cache
+C:\Users\Inbar\Desktop\Beauty_Me_Server_Side\BeautyMe\obj\Debug\BeautyMe.csproj.CoreCompileInputs.cache
+C:\Users\Inbar\Desktop\Beauty_Me_Server_Side\BeautyMe\bin\Debug\BeautyMe.dll.config
+C:\Users\Inbar\Desktop\Beauty_Me_Server_Side\BeautyMe\bin\Debug\BeautyMe.dll
+C:\Users\Inbar\Desktop\Beauty_Me_Server_Side\BeautyMe\bin\Debug\BeautyMe.pdb
+C:\Users\Inbar\Desktop\Beauty_Me_Server_Side\BeautyMe\bin\Debug\EntityFramework.dll
+C:\Users\Inbar\Desktop\Beauty_Me_Server_Side\BeautyMe\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Inbar\Desktop\Beauty_Me_Server_Side\BeautyMe\bin\Debug\EntityFramework.xml
+C:\Users\Inbar\Desktop\Beauty_Me_Server_Side\BeautyMe\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Inbar\Desktop\Beauty_Me_Server_Side\BeautyMe\obj\Debug\BeautyMe.csproj.CopyComplete
