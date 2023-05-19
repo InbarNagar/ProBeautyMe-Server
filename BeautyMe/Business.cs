@@ -30,6 +30,7 @@ namespace BeautyMe
         public string AddressCity { get; set; }
         public string Is_client_house { get; set; }
         public string Professional_ID_number { get; set; }
+        public string About { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Appointment> Appointment { get; set; }

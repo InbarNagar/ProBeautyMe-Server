@@ -18,6 +18,8 @@ namespace BeautyMeWEB.DTO
         public string AddressHouseNumber;
         public string AddressCity;
         public string password;
+        public string Facebook_link;
+        public string Instagram_link;
         public string userType;
     }
 }

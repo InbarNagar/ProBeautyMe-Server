@@ -35,6 +35,8 @@ namespace BeautyMeWEB.Controllers
                 AddressStreet = x.AddressStreet,
                 AddressHouseNumber = x.AddressHouseNumber,
                 AddressCity = x.AddressCity,
+                Facebook_link = x.Facebook_link,
+                Instagram_link = x.Instagram_link,
                 password = x.password
             }).ToList();
             if (AllClient != null)
@@ -60,6 +62,8 @@ namespace BeautyMeWEB.Controllers
                 AddressStreet = x.AddressStreet,
                 AddressHouseNumber = x.AddressHouseNumber,
                 AddressCity = x.AddressCity,
+                Facebook_link= x.Facebook_link,
+                Instagram_link= x.Instagram_link,
                 password = x.password
             }).FirstOrDefault();
             if (oneClient != null)
@@ -112,6 +116,8 @@ namespace BeautyMeWEB.Controllers
                     AddressStreet = x.AddressStreet,
                     AddressHouseNumber = x.AddressHouseNumber,
                     AddressCity = x.AddressCity,
+                    Facebook_link = x.Facebook_link,
+                    Instagram_link = x.Instagram_link,
                     password = x.password
                 };
                 db.Client.Add(newClient);
@@ -140,6 +146,8 @@ namespace BeautyMeWEB.Controllers
                 prevC.birth_date = newC.birth_date;
                 prevC.First_name = newC.First_name;
                 prevC.Last_name = newC.Last_name;
+                prevC.Instagram_link = newC.Instagram_link;
+                prevC.Facebook_link= newC.Facebook_link;
                 db.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK, $"Client {prevC.ID_number} had been updated!");
             }

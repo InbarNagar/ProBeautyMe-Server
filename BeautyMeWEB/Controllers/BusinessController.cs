@@ -47,6 +47,7 @@ namespace BeautyMeWEB.Controllers
             BusinessDTO oneBusiness = db.Business.Where(a => a.Business_Number == business_num).Select(x => new BusinessDTO
             {
                 Business_Number = x.Business_Number,
+                About= x.About,
                 Name = x.Name,
                 AddressStreet = x.AddressStreet,
                 AddressHouseNumber = x.AddressHouseNumber,

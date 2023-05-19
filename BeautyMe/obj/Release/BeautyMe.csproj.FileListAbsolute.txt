@@ -46,6 +46,7 @@ C:\Users\ofirt\Downloads\vs\BeautyMe\obj\Release\BeautyMe.csproj.CoreCompileInpu
 C:\Users\ofirt\Downloads\vs\BeautyMe\obj\Release\BeautyMe.csproj.CopyComplete
 C:\Users\ofirt\Downloads\vs\BeautyMe\obj\Release\BeautyMe.dll
 C:\Users\ofirt\Downloads\vs\BeautyMe\obj\Release\BeautyMe.pdb
+<<<<<<< HEAD
 C:\Users\Inbar\Downloads\vs (2)\vs\BeautyMe\bin\Release\BeautyMe.dll.config
 C:\Users\Inbar\Downloads\vs (2)\vs\BeautyMe\bin\Release\BeautyMe.dll
 C:\Users\Inbar\Downloads\vs (2)\vs\BeautyMe\bin\Release\BeautyMe.pdb
@@ -58,3 +59,5 @@ C:\Users\Inbar\Downloads\vs (2)\vs\BeautyMe\obj\Release\BeautyMe.csproj.CoreComp
 C:\Users\Inbar\Downloads\vs (2)\vs\BeautyMe\obj\Release\BeautyMe.csproj.CopyComplete
 C:\Users\Inbar\Downloads\vs (2)\vs\BeautyMe\obj\Release\BeautyMe.dll
 C:\Users\Inbar\Downloads\vs (2)\vs\BeautyMe\obj\Release\BeautyMe.pdb
+=======
+>>>>>>> 3c4c6229b5211385e2e6b94eb8dc02baff5fa905

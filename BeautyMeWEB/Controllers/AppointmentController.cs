@@ -92,8 +92,48 @@ namespace BeautyMeWEB.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Error occurred while adding new Appointment to the database: " + ex.InnerException.InnerException.Message);
             }
         }
+        [HttpPost]
+        [Route("api/Appointment/ClientToAppointment")]
+        public HttpResponseMessage ClientToAppointment([FromBody] AppointmentDTO x)
+        {
+            Appointment appointment = db.Appointment.Where(z=>z.Number_appointment== x.Number_appointment && z.Appointment_status== "Available" && z.ID_Client==null).FirstOrDefault();
+            if (appointment != null)
+            {
+                appointment.ID_Client= x.ID_Client;
+                appointment.Appointment_status = "Awaiting_approval";
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, $"{x.ID_Client} is assigned to {appointment.Number_appointment}");
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound, "error");
 
-
+            }
+        }
+        //תורים ללקוח
+        [HttpGet]
+        [Route("api/Appointment/AllAppointmentForClient/{ID_Client}")]
+        public HttpResponseMessage GetAllAppointmentForClient(string ID_Client)
+        {
+            List<AppointmentDTO> AllAppointment = db.Appointment.Where(a => a.ID_Client == ID_Client && a.ID_Client!=null).Select(x => new AppointmentDTO
+            {
+                Number_appointment = x.Number_appointment,
+                BusinessName=x.Business.Name,
+                Date = x.Date,
+                Start_time = x.Start_time,
+                End_time = x.End_time,
+                Is_client_house = x.Is_client_house,
+                Business_Number = x.Business_Number,
+                Appointment_status = x.Appointment_status,
+                AddressStreet = x.Business.AddressStreet,
+                AddressHouseNumber = x.Business.AddressHouseNumber,
+                AddressCity = x.Business.AddressCity
+            }).ToList();
+            if (AllAppointment != null)
+                return Request.CreateResponse(HttpStatusCode.OK, AllAppointment);
+            else
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+        }
         // Put: api/Put
         [HttpPut]
         [Route("api/Appointment/UpdateAppointment")]
@@ -142,6 +182,25 @@ namespace BeautyMeWEB.Controllers
             db.SaveChanges();
 
             return Ok("הנתונים נמחקו בהצלחה.");  // החזרת תשובה מתאימה לפי המצב
+        }
+        // קונטרולר לשינוי הסטטוס לפי לקוח
+        [HttpPut]
+        [Route("api/Appointment/changeStatus/{clientID}")]
+        public HttpResponseMessage ChangeStatusByClient(string clientID)
+        {
+            Appointment AppointmentToChangeStatus = db.Appointment.Where(x => x.ID_Client == clientID && x.Appointment_status== "Awaiting_approval").FirstOrDefault();
+            if (AppointmentToChangeStatus == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound, $"client ${clientID} has no appointments in dataBase!");
+            }
+
+            else
+            {
+                AppointmentToChangeStatus.Appointment_status = "Appointment_ended";
+
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, $"{AppointmentToChangeStatus.Number_appointment} updated in the dataBase");
+            }
         }
     }
 }
