@@ -170,7 +170,7 @@ namespace BeautyMeWEB.Controllers
             }
         }
         [HttpDelete]
-        [Route("api/Proffesional/DeleteProffesional")]
+        [Route("api/Proffesional/DeleteProffesional/{proffesionalId}")]
         public HttpResponseMessage DeleteBusiness(string proffesionalId)
         {
             Professional PtoDel = db.Professional.Where(x => x.ID_number == proffesionalId).FirstOrDefault();

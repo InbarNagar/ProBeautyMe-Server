@@ -72,6 +72,7 @@ namespace BeautyMeWEB.Controllers
                 Business_can_give_treatment newBusiness = new Business_can_give_treatment()
                 {
                     Type_treatment_Number = x.Type_treatment_Number,
+                    
                     Category_Number = x.Category_Number,
                     Business_Number = x.Business_Number,
                     Price = x.Price,

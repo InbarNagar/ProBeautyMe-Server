@@ -729,8 +729,8 @@ C:\Users\Inbar\Desktop\Beauty_Me_Server_Side\BeautyMeWEB\bin\System.Web.WebPages
 C:\Users\Inbar\Desktop\Beauty_Me_Server_Side\BeautyMeWEB\bin\System.Web.WebPages.Razor.xml
 C:\Users\Inbar\Desktop\Beauty_Me_Server_Side\BeautyMeWEB\bin\Antlr3.Runtime.pdb
 C:\Users\Inbar\Desktop\Beauty_Me_Server_Side\BeautyMeWEB\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\Inbar\Desktop\Beauty_Me_Server_Side\BeautyMeWEB\obj\Debug\BeautyMeWEB.csproj.AssemblyReference.cache
 C:\Users\Inbar\Desktop\Beauty_Me_Server_Side\BeautyMeWEB\obj\Debug\BeautyMeWEB.csproj.CoreCompileInputs.cache
 C:\Users\Inbar\Desktop\Beauty_Me_Server_Side\BeautyMeWEB\obj\Debug\BeautyMeWEB.csproj.CopyComplete
 C:\Users\Inbar\Desktop\Beauty_Me_Server_Side\BeautyMeWEB\obj\Debug\BeautyMeWEB.dll
 C:\Users\Inbar\Desktop\Beauty_Me_Server_Side\BeautyMeWEB\obj\Debug\BeautyMeWEB.pdb
+C:\Users\Inbar\Desktop\Beauty_Me_Server_Side\BeautyMeWEB\obj\Debug\BeautyMeWEB.csproj.AssemblyReference.cache

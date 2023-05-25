@@ -159,7 +159,7 @@ namespace BeautyMeWEB.Controllers
             }
         }
         [HttpDelete]
-        [Route("api/Client/DeleteClient")]
+        [Route("api/Client/DeleteClient/{clientId}")]
         public HttpResponseMessage DeleteBusiness(string clientId)
         {
             Client CtoDel = db.Client.Where(x => x.ID_number == clientId).FirstOrDefault();

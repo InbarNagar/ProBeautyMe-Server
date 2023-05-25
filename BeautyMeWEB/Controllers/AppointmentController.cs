@@ -242,6 +242,56 @@ namespace BeautyMeWEB.Controllers
         }
 
 
+        [HttpGet]
+        [Route("api/Appointment/AllAvailableAppointment")]
+        public HttpResponseMessage AllAvailableAppointment()
+        {
+            List<AppointmentDTO> AllAppointment = db.Appointment.Where(x => x.Appointment_status == "available" && x.ID_Client == null).Select(a => new AppointmentDTO
+            {
+                Number_appointment = a.Number_appointment,
+                Date = a.Date,
+                Start_time = a.Start_time,
+                End_time = a.End_time,
+                Is_client_house = a.Is_client_house,
+                Business_Number = a.Business_Number,
+                Appointment_status = a.Appointment_status,
+                AddressCity = a.Business.AddressCity,
+                AddressHouseNumber = a.Business.AddressHouseNumber,
+                AddressStreet = a.Business.AddressStreet,
+                BusinessName = a.Business.Name
+            }).ToList();
+            if (AllAppointment != null)
+                return Request.CreateResponse(HttpStatusCode.OK, AllAppointment);
+            else
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+        }
+
+
+        [HttpDelete]
+        [Route("api/Appointment/CanceleAppointmentByClient/{appointmentNumber}")]
+        public IHttpActionResult CancelAppointmentByClient(int appointmentNumber)
+        {
+            if (appointmentNumber.ToString() == null)  // בדיקת תקינות ה-DTO שהתקבל
+            {
+                return BadRequest("הפרטים שהתקבלו אינם תקינים.");
+            }
+            else
+            {
+                Appointment CanceleAppointment = db.Appointment.Where(x => x.Number_appointment == appointmentNumber).FirstOrDefault();   // חיפוש הרשומה המתאימה לפי המזהה שלה
+                if (CanceleAppointment != null && CanceleAppointment.Appointment_status == "Awaiting_approval")
+                {
+                    db.Appointment.Remove(CanceleAppointment);   // מחיקת הרשומה מבסיס הנתונים
+                    db.SaveChanges();
+                    return Ok("הנתונים נמחקו בהצלחה.");
+                }  // החזרת תשובה מתאימה לפי המצב
+                else
+                {
+                    return NotFound();
+                }
+            }
+        }
+
+
     }
 }
 

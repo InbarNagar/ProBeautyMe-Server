@@ -32,7 +32,8 @@ namespace BeautyMeWEB.Controllers
                 Facebook_link = x.Facebook_link,
                 Instagram_link = x.Instagram_link,
                 password = x.password,
-                userType = "Cli"
+                userType = "Cli",
+                token=x.token
 
             }).FirstOrDefault();
             if (c != null)
@@ -54,10 +55,18 @@ namespace BeautyMeWEB.Controllers
                     AddressHouseNumber = x.AddressHouseNumber,
                     AddressCity = x.AddressCity,
                     password = x.password,
-                    userType = "Pro"
+                    userType = "Pro",
+                    token = x.token
+
                 }).FirstOrDefault();
                 if (p != null)
                 {
+                  BusinessDTO number = db.Business.Where(x => x.Professional_ID_number == user.id_number).Select(y => new BusinessDTO
+                    {
+                        Business_Number = y.Business_Number
+                    }
+                   ).FirstOrDefault();
+                   p.Business_Number = number.Business_Number;
                     return Request.CreateResponse(HttpStatusCode.OK, p);
                 }
                 else

@@ -111,9 +111,8 @@ namespace BeautyMeWEB.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound, "couldn't find business to update!!!");
             }
         }
-
         [HttpDelete]
-        [Route("api/Business/DeleteBusinesss")]
+        [Route("api/Business/DeleteBusinesss/{businessId}")]
         public HttpResponseMessage DeleteBusiness(int businessId)
         {
             Business BtoDel = db.Business.Where(x => x.Business_Number == businessId).FirstOrDefault();
