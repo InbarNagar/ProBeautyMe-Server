@@ -103,8 +103,8 @@ namespace BeautyMeWEB.Controllers
                 PrevB.AddressCity = newB.AddressCity;
                 PrevB.AddressHouseNumber = newB.AddressHouseNumber;
                 PrevB.Is_client_house = newB.Is_client_house;
-                db.SaveChanges();
-                return Request.CreateResponse(HttpStatusCode.OK, $"{newB.Business_Number} details updated!");
+                int x = db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK, $"{x} details updated!");
             }
             else
             {

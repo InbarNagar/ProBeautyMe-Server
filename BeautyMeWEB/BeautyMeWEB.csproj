@@ -166,6 +166,7 @@
     <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="Controllers\Appointment_can_give_treatmentController.cs" />
     <Compile Include="Controllers\BusinessController.cs" />
+    <Compile Include="Controllers\BusinessReviewController.cs" />
     <Compile Include="Controllers\Business_can_give_treatmentController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
@@ -180,6 +181,7 @@
     <Compile Include="DTO\AppointmentDTO.cs" />
     <Compile Include="DTO\Appointment_can_give_treatmentDTO.cs" />
     <Compile Include="DTO\BusinessDTO.cs" />
+    <Compile Include="DTO\BusinessReviewDTO.cs" />
     <Compile Include="DTO\Business_can_give_treatmentDTO.cs" />
     <Compile Include="DTO\CategoryDTO.cs" />
     <Compile Include="DTO\Future_AppointmentDTO.cs" />

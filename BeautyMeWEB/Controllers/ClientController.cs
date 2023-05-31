@@ -45,12 +45,12 @@ namespace BeautyMeWEB.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound);
         }
 
-        // Post: api/Client/OneClient פונקציה שמקבלת ת.ז וסיסמה ומחזירה את המשתמש
+        // Post: api/Client/OneClient פונקציה שמקבלת ת.ז ומחזירה את המשתמש
         [HttpPost]
-        [Route("api/Client/OneClient")]
-        public HttpResponseMessage GetOneClient([FromBody] SearchPeopleDTO v)
+        [Route("api/Client/OneClient/{ID_number}")]
+        public HttpResponseMessage GetOneClient(string ID_number)
         {
-            ClientDTO oneClient = db.Client.Where(a => a.ID_number == v.id_number && a.password == v.password).Select(x => new ClientDTO
+            ClientDTO oneClient = db.Client.Where(a => a.ID_number == ID_number).Select(x => new ClientDTO
             {
                 ID_number = x.ID_number,
                 First_name = x.First_name,

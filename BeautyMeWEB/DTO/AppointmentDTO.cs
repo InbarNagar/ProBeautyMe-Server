@@ -19,6 +19,10 @@ namespace BeautyMeWEB.DTO
         public string AddressHouseNumber;
         public string BusinessName;//business name
         public string ID_Client;
+        public string First_name;
+        public string Last_name;
+        public string Email;
+        public string phone;
 
     }
 }

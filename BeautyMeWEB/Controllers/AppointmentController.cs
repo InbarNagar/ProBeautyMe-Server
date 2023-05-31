@@ -59,6 +59,12 @@ namespace BeautyMeWEB.Controllers
                 Is_client_house = x.Is_client_house,
                 Business_Number = x.Business_Number,
                 Appointment_status = x.Appointment_status,
+                ID_Client = x.ID_Client,
+                First_name=x.Client.First_name,
+                Last_name=x.Client.Last_name,
+                phone=x.Client.phone,
+                Email=x.Client.Email
+                
             }).ToList();
             if (AllAppointment != null)
                 return Request.CreateResponse(HttpStatusCode.OK, AllAppointment);
@@ -212,7 +218,7 @@ namespace BeautyMeWEB.Controllers
         {
             string ID_Client = x.ID_number;
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["BeautyMeDB"].ConnectionString);
-            string query = @"select A.*, p.token,B.*
+            string query = @"select A.*, p.token,B.*,
              from Appointment A inner join Business B ON A.Business_Number=b.Business_Number inner join Client C 
              on A.ID_Client= c.ID_number inner join Professional p on p.ID_number=b.Professional_ID_number
              where ID_Client=@ID_Client";
@@ -289,6 +295,26 @@ namespace BeautyMeWEB.Controllers
                     return NotFound();
                 }
             }
+        }
+
+        [HttpGet]
+        [Route("api/Appointment/OneAppointment/{appointment_number}")]
+        public HttpResponseMessage GetOneAppointment(int appointment_number)
+        {
+            AppointmentDTO appointment = db.Appointment.Where(x => x.Number_appointment == appointment_number).Select(a => new AppointmentDTO
+            {
+                BusinessName = a.Business.Name,
+                Date = a.Date,
+                Start_time = a.Start_time,
+                End_time = a.End_time,
+                Is_client_house = a.Is_client_house,
+                Business_Number = a.Business_Number,
+                Appointment_status = a.Appointment_status
+            }).FirstOrDefault();
+            if (appointment != null)
+                return Request.CreateResponse(HttpStatusCode.OK, appointment);
+            else
+                return Request.CreateResponse(HttpStatusCode.NotFound);
         }
 
 
