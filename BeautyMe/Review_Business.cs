@@ -20,7 +20,6 @@ namespace BeautyMe
         public string On_time { get; set; }
         public string Overall_rating { get; set; }
         public string Comment { get; set; }
-        public string Professional_ID_number { get; set; }
         public string Client_ID_number { get; set; }
         public int Business_Number { get; set; }
         public Nullable<int> Number_appointment { get; set; }

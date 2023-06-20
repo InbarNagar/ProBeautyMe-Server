@@ -192,20 +192,19 @@ namespace BeautyMeWEB.Controllers
 
             return Ok("הנתונים נמחקו בהצלחה.");  // החזרת תשובה מתאימה לפי המצב
         }
-        // קונטרולר לשינוי הסטטוס לפי לקוח
-        [HttpPut]
-        [Route("api/Appointment/changeStatus/{clientID}")]
-        public HttpResponseMessage ChangeStatusByClient(string clientID)
+        // קונטרולר לשינוי הסטטוס לפי למאושר
+        [HttpPost]
+        [Route("api/Appointment/changeStatus/{Number_appointment}")]
+        public HttpResponseMessage ChangeStatusByClient(int Number_appointment)
         {
-            Appointment AppointmentToChangeStatus = db.Appointment.Where(x => x.ID_Client == clientID && x.Appointment_status== "Awaiting_approval").FirstOrDefault();
+            Appointment AppointmentToChangeStatus = db.Appointment.Where(x => x.Number_appointment == Number_appointment && x.Appointment_status== "Awaiting_approval").FirstOrDefault();
             if (AppointmentToChangeStatus == null)
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound, $"client ${clientID} has no appointments in dataBase!");
+                return Request.CreateResponse(HttpStatusCode.NotFound, $"${Number_appointment} is not found!");
             }
-
             else
             {
-                AppointmentToChangeStatus.Appointment_status = "Appointment_ended";
+                AppointmentToChangeStatus.Appointment_status = "Confirmed";
 
                 db.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK, $"{AppointmentToChangeStatus.Number_appointment} updated in the dataBase");
@@ -218,7 +217,7 @@ namespace BeautyMeWEB.Controllers
         {
             string ID_Client = x.ID_number;
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["BeautyMeDB"].ConnectionString);
-            string query = @"select A.*, p.token,B.*,
+            string query = @"select A.*, p.token,B.*
              from Appointment A inner join Business B ON A.Business_Number=b.Business_Number inner join Client C 
              on A.ID_Client= c.ID_number inner join Professional p on p.ID_number=b.Professional_ID_number
              where ID_Client=@ID_Client";
@@ -275,24 +274,24 @@ namespace BeautyMeWEB.Controllers
 
         [HttpDelete]
         [Route("api/Appointment/CanceleAppointmentByClient/{appointmentNumber}")]
-        public IHttpActionResult CancelAppointmentByClient(int appointmentNumber)
+        public HttpResponseMessage CancelAppointmentByClient(int appointmentNumber)
         {
             if (appointmentNumber.ToString() == null)  // בדיקת תקינות ה-DTO שהתקבל
             {
-                return BadRequest("הפרטים שהתקבלו אינם תקינים.");
+                return Request.CreateResponse(HttpStatusCode.BadRequest,"הפרטים שהתקבלו אינם תקינים.");
             }
             else
             {
                 Appointment CanceleAppointment = db.Appointment.Where(x => x.Number_appointment == appointmentNumber).FirstOrDefault();   // חיפוש הרשומה המתאימה לפי המזהה שלה
-                if (CanceleAppointment != null && CanceleAppointment.Appointment_status == "Awaiting_approval")
+                if (CanceleAppointment != null)
                 {
                     db.Appointment.Remove(CanceleAppointment);   // מחיקת הרשומה מבסיס הנתונים
                     db.SaveChanges();
-                    return Ok("הנתונים נמחקו בהצלחה.");
+                    return Request.CreateResponse(HttpStatusCode.OK, $"appointment number {appointmentNumber} deleted from dataBase");
                 }  // החזרת תשובה מתאימה לפי המצב
                 else
                 {
-                    return NotFound();
+                    return Request.CreateResponse(HttpStatusCode.NotFound, $"coldn't find appointment number {appointmentNumber}");
                 }
             }
         }

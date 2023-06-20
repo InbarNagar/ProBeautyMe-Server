@@ -32,6 +32,7 @@ namespace BeautyMeWEB.Controllers
                 AddressCity = x.AddressCity,
                 Is_client_house = x.Is_client_house,
                 Professional_ID_number = x.Professional_ID_number,
+                About= x.About,
             }).ToList();
             if (AllBusiness != null)
                 return Request.CreateResponse(HttpStatusCode.OK, AllBusiness);
@@ -64,7 +65,7 @@ namespace BeautyMeWEB.Controllers
         // Post: api/Post
         [HttpPost]
         [Route("api/Business/NewBusiness")]
-
+        //להוסיף About
         public HttpResponseMessage PostNewBusiness([FromBody] BusinessDTO x)
         {
             try
@@ -77,7 +78,8 @@ namespace BeautyMeWEB.Controllers
                     AddressHouseNumber = x.AddressHouseNumber,
                     AddressCity = x.AddressCity,
                     Is_client_house = x.Is_client_house,
-                    Professional_ID_number = x.Professional_ID_number
+                    Professional_ID_number = x.Professional_ID_number,
+                    About= x.About
                 };
                 db.Business.Add(newBusiness);
                 db.SaveChanges();
@@ -91,6 +93,7 @@ namespace BeautyMeWEB.Controllers
             }
         }
         // New Calls
+        //להוסיף about
         [HttpPost]
         [Route("api/Business/UpdateBusinesss")]
         public HttpResponseMessage UpdateBusiness([FromBody] BusinessDTO newB)
@@ -103,6 +106,7 @@ namespace BeautyMeWEB.Controllers
                 PrevB.AddressCity = newB.AddressCity;
                 PrevB.AddressHouseNumber = newB.AddressHouseNumber;
                 PrevB.Is_client_house = newB.Is_client_house;
+                PrevB.About= newB.About;
                 int x = db.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK, $"{x} details updated!");
             }

@@ -29,6 +29,7 @@ namespace BeautyMe
         public virtual DbSet<Appointment_can_give_treatment> Appointment_can_give_treatment { get; set; }
         public virtual DbSet<Business> Business { get; set; }
         public virtual DbSet<Business_can_give_treatment> Business_can_give_treatment { get; set; }
+        public virtual DbSet<BusinessDiary> BusinessDiary { get; set; }
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Client> Client { get; set; }
         public virtual DbSet<Future_Appointment> Future_Appointment { get; set; }

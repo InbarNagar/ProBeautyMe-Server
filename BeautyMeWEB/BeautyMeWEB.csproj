@@ -166,12 +166,14 @@
     <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="Controllers\Appointment_can_give_treatmentController.cs" />
     <Compile Include="Controllers\BusinessController.cs" />
+    <Compile Include="Controllers\BusinessDiaryController.cs" />
     <Compile Include="Controllers\BusinessReviewController.cs" />
     <Compile Include="Controllers\Business_can_give_treatmentController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\Future_AppointmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\ProfessionalController.cs" />
     <Compile Include="Controllers\Push_Nof_Controller.cs" />
     <Compile Include="Controllers\SearchController.cs" />

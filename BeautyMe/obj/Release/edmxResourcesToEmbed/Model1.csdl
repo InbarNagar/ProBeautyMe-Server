@@ -46,6 +46,9 @@
     <Property Name="Is_client_house" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="Professional_ID_number" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Facebook_link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Instagram_link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Appointment" Relationship="Self.FK_Business_BusinessNumber" FromRole="Business" ToRole="Appointment" />
     <NavigationProperty Name="Professional" Relationship="Self.FK__Business__Profes__2AD55B43" FromRole="Business" ToRole="Professional" />
     <NavigationProperty Name="Professional1" Relationship="Self.FK__Business__Profes__2BC97F7C" FromRole="Business" ToRole="Professional" />
@@ -63,6 +66,18 @@
     <Property Name="Treatment_duration" Type="Time" Nullable="false" Precision="7" />
     <NavigationProperty Name="Category" Relationship="Self.FK__Business___Categ__0662F0A3" FromRole="Business_can_give_treatment" ToRole="Category" />
     <NavigationProperty Name="Type_Treatment" Relationship="Self.FK__Business___Type___056ECC6A" FromRole="Business_can_give_treatment" ToRole="Type_Treatment" />
+  </EntityType>
+  <EntityType Name="BusinessDiary">
+    <Key>
+      <PropertyRef Name="Business_id" />
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="Start_time" />
+      <PropertyRef Name="End_time" />
+    </Key>
+    <Property Name="Business_id" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Start_time" Type="Double" Nullable="false" />
+    <Property Name="End_time" Type="Double" Nullable="false" />
   </EntityType>
   <EntityType Name="Category">
     <Key>
@@ -145,7 +160,6 @@
     <Property Name="On_time" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="Overall_rating" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Professional_ID_number" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="Client_ID_number" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="Business_Number" Type="Int32" Nullable="false" />
     <Property Name="Number_appointment" Type="Int32" />
@@ -454,6 +468,7 @@
     <EntitySet Name="Appointment_can_give_treatment" EntityType="Self.Appointment_can_give_treatment" />
     <EntitySet Name="Business" EntityType="Self.Business" />
     <EntitySet Name="Business_can_give_treatment" EntityType="Self.Business_can_give_treatment" />
+    <EntitySet Name="BusinessDiary" EntityType="Self.BusinessDiary" />
     <EntitySet Name="Category" EntityType="Self.Category" />
     <EntitySet Name="Client" EntityType="Self.Client" />
     <EntitySet Name="Future_Appointment" EntityType="Self.Future_Appointment" />

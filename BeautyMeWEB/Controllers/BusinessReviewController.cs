@@ -2,6 +2,9 @@
 using BeautyMeWEB.DTO;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -48,5 +51,53 @@ namespace BeautyMeWEB.Controllers
             }
         }
 
+
+        // מידע על התורים של הלקוח כולל טבלת ביקורות (לשימוש לכפתור דרג עסק) עם אינר ג'וין 
+        [HttpGet]
+        [Route("api/BusinessReview/AllAppointmentForClient/{clientID}")]
+        public HttpResponseMessage ClientAppointment(string clientID)
+        {
+            string ID_Client = clientID;
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["BeautyMeDB"].ConnectionString);
+            string query = @"select a.*,br.*
+                        from Appointment a left join Review_Business br on br.Number_appointment=a.Number_appointment  
+                        where A.ID_Client=@ID_Client";
+
+            SqlDataAdapter adpter = new SqlDataAdapter(query, con);
+            adpter.SelectCommand.Parameters.AddWithValue("@ID_Client", ID_Client);
+            DataSet ds = new DataSet();
+            adpter.Fill(ds, "Review_Business");
+            DataTable dt = ds.Tables["Review_Business"];
+            return Request.CreateResponse(HttpStatusCode.OK, dt);
+        }
+
+        // מידע על התורים של הלקוח כולל טבלת ביקורות (לשימוש לכפתור דרג עסק) עם אינר ג'וין 
+        [HttpGet]
+        [Route("api/BusinessReview/AllAppointmentForBusiness/{BusinessNumber}")]
+        public HttpResponseMessage BusinessAppointment(int BusinessNumber)
+        {
+            
+          List <BusinessReviewDTO> r = db.Review_Business.Where(x=>x.Business_Number == BusinessNumber).Select( a=> new BusinessReviewDTO
+          {
+                Business_Number = a.Business_Number,
+                Review_Number=a.Review_Number,
+                Number_appointment= (int)a.Number_appointment,
+                Cleanliness=a.Cleanliness,
+                Professionalism=a.Professionalism,
+                On_time=a.On_time,
+                Overall_rating=a.Overall_rating,
+                Client_ID_number=a.Client_ID_number,
+                Comment=a.Comment
+             }).ToList();
+            if (r != null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, r);
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound,$"No Reviews for business number {BusinessNumber}");
+            }
+
+        }
     }
 }
