@@ -21,6 +21,7 @@ namespace BeautyMeWEB.DTO
         public int Business_Number;
         public string userType;
         public string token;
+        public string ProfilPic;
 
     }
 }

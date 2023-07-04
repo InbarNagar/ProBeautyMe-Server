@@ -23,7 +23,6 @@ namespace BeautyMe
         public int Business_Number { get; set; }
         public string Name { get; set; }
         public string AddressStreet { get; set; }
-        public string AddressHouseNumber { get; set; }
         public string AddressCity { get; set; }
         public string Is_client_house { get; set; }
         public string Professional_ID_number { get; set; }
@@ -31,6 +30,9 @@ namespace BeautyMe
         public string phone { get; set; }
         public string Facebook_link { get; set; }
         public string Instagram_link { get; set; }
+        public string AddressHouseNumber { get; set; }
+        public Nullable<double> LetCordinate { get; set; }
+        public Nullable<double> LongCordinate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Appointment> Appointment { get; set; }

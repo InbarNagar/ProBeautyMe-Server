@@ -182,9 +182,11 @@
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="DTO\AppointmentDTO.cs" />
     <Compile Include="DTO\Appointment_can_give_treatmentDTO.cs" />
+    <Compile Include="DTO\BusinessDiaryDTO.cs" />
     <Compile Include="DTO\BusinessDTO.cs" />
     <Compile Include="DTO\BusinessReviewDTO.cs" />
     <Compile Include="DTO\Business_can_give_treatmentDTO.cs" />
+    <Compile Include="DTO\Business_Photos.cs" />
     <Compile Include="DTO\CategoryDTO.cs" />
     <Compile Include="DTO\Future_AppointmentDTO.cs" />
     <Compile Include="DTO\SearchDTO.cs" />
@@ -251,6 +253,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="uploadFile2\" />
     <Folder Include="Views\Appointment\" />
     <Folder Include="Views\Appointment_can_give_treatment\" />
     <Folder Include="Views\Business\" />

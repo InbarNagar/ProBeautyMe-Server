@@ -11,12 +11,13 @@
           </Key>
           <Property Name="Number_appointment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
-          <Property Name="Start_time" Type="time" Precision="7" Nullable="false" />
-          <Property Name="End_time" Type="time" Precision="7" Nullable="false" />
           <Property Name="Is_client_house" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Business_Number" Type="int" Nullable="false" />
           <Property Name="Appointment_status" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="ID_Client" Type="nchar" MaxLength="10" />
+          <Property Name="Start_Hour" Type="float" />
+          <Property Name="End_Hour" Type="float" />
+          <Property Name="Type_Treatment_Number" Type="int" />
         </EntityType>
         <EntityType Name="Appointment_can_give_treatment">
           <Key>
@@ -35,14 +36,16 @@
           <Property Name="Business_Number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="AddressStreet" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="AddressHouseNumber" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="AddressCity" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Is_client_house" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Is_client_house" Type="nvarchar" MaxLength="3" />
           <Property Name="Professional_ID_number" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="About" Type="nvarchar(max)" />
           <Property Name="phone" Type="nvarchar" MaxLength="50" />
           <Property Name="Facebook_link" Type="varchar(max)" />
           <Property Name="Instagram_link" Type="varchar(max)" />
+          <Property Name="AddressHouseNumber" Type="varchar" MaxLength="10" />
+          <Property Name="LetCordinate" Type="float" />
+          <Property Name="LongCordinate" Type="float" />
         </EntityType>
         <EntityType Name="Business_can_give_treatment">
           <Key>
@@ -55,13 +58,16 @@
           <Property Name="Business_Number" Type="int" Nullable="false" />
           <Property Name="Price" Type="money" Nullable="false" />
           <Property Name="Treatment_duration" Type="time" Precision="7" Nullable="false" />
+          <Property Name="duration" Type="float" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
         <EntityType Name="Business_Photos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
           <Property Name="Business_number" Type="nchar" MaxLength="10" />
           <Property Name="url_photo" Type="varchar(max)" />
-        </EntityType>-->
+          <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
         <EntityType Name="BusinessDiary">
           <Key>
             <PropertyRef Name="Business_id" />
@@ -93,13 +99,14 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
           <Property Name="phone" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Email" Type="varchar(max)" Nullable="false" />
           <Property Name="AddressStreet" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="AddressHouseNumber" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="AddressCity" Type="nvarchar(max)" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="Facebook_link" Type="varchar(max)" />
           <Property Name="Instagram_link" Type="varchar(max)" />
           <Property Name="Image" Type="image" />
           <Property Name="token" Type="varchar" MaxLength="50" />
+          <Property Name="AddressHouseNumber" Type="varchar" MaxLength="10" />
+          <Property Name="ProfilPic" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Future_Appointment">
           <Key>
@@ -130,6 +137,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
           <Property Name="AddressCity" Type="nvarchar(max)" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="token" Type="varchar" MaxLength="50" />
+          <Property Name="ProfilPic" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Review_Business">
           <Key>
@@ -439,6 +447,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
           <EntitySet Name="Appointment_can_give_treatment" EntityType="Self.Appointment_can_give_treatment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Business" EntityType="Self.Business" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Business_can_give_treatment" EntityType="Self.Business_can_give_treatment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Business_Photos" EntityType="Self.Business_Photos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BusinessDiary" EntityType="Self.BusinessDiary" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
@@ -541,12 +550,13 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
           </Key>
           <Property Name="Number_appointment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Start_time" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="End_time" Type="Time" Nullable="false" Precision="7" />
           <Property Name="Is_client_house" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Business_Number" Type="Int32" Nullable="false" />
           <Property Name="Appointment_status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ID_Client" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Start_Hour" Type="Double" />
+          <Property Name="End_Hour" Type="Double" />
+          <Property Name="Type_Treatment_Number" Type="Int32" />
           <NavigationProperty Name="Appointment_can_give_treatment" Relationship="Self.FK__Appointme__Numbe__7EC1CEDB" FromRole="Appointment" ToRole="Appointment_can_give_treatment" />
           <NavigationProperty Name="Appointment_can_give_treatment1" Relationship="Self.FK__Appointme__Numbe__7FB5F314" FromRole="Appointment" ToRole="Appointment_can_give_treatment" />
           <NavigationProperty Name="Future_Appointment" Relationship="Self.FK__Future_Ap__Numbe__74444068" FromRole="Appointment" ToRole="Future_Appointment" />
@@ -576,14 +586,16 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
           <Property Name="Business_Number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="AddressStreet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AddressHouseNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="AddressCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Is_client_house" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Is_client_house" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Name="Professional_ID_number" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Facebook_link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Instagram_link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="AddressHouseNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LetCordinate" Type="Double" />
+          <Property Name="LongCordinate" Type="Double" />
           <NavigationProperty Name="Appointment" Relationship="Self.FK_Business_BusinessNumber" FromRole="Business" ToRole="Appointment" />
           <NavigationProperty Name="Professional" Relationship="Self.FK__Business__Profes__2AD55B43" FromRole="Business" ToRole="Professional" />
           <NavigationProperty Name="Professional1" Relationship="Self.FK__Business__Profes__2BC97F7C" FromRole="Business" ToRole="Professional" />
@@ -599,8 +611,17 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
           <Property Name="Business_Number" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="Treatment_duration" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="duration" Type="Double" />
           <NavigationProperty Name="Category" Relationship="Self.FK__Business___Categ__0662F0A3" FromRole="Business_can_give_treatment" ToRole="Category" />
           <NavigationProperty Name="Type_Treatment" Relationship="Self.FK__Business___Type___056ECC6A" FromRole="Business_can_give_treatment" ToRole="Type_Treatment" />
+        </EntityType>
+        <EntityType Name="Business_Photos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Business_number" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="url_photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="BusinessDiary">
           <Key>
@@ -635,13 +656,14 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
           <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="AddressStreet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="AddressHouseNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="AddressCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Facebook_link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Instagram_link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="token" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AddressHouseNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ProfilPic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Appointment" Relationship="Self.FK_Client_ID_Client" FromRole="Client" ToRole="Appointment" />
           <NavigationProperty Name="Future_Appointment" Relationship="Self.FK__Future_Ap__Clien__725BF7F6" FromRole="Client" ToRole="Future_Appointment" />
           <NavigationProperty Name="Future_Appointment1" Relationship="Self.FK__Future_Ap__Clien__753864A1" FromRole="Client" ToRole="Future_Appointment" />
@@ -681,6 +703,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
           <Property Name="AddressCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="token" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProfilPic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Business" Relationship="Self.FK__Business__Profes__2AD55B43" FromRole="Professional" ToRole="Business" />
           <NavigationProperty Name="Business1" Relationship="Self.FK__Business__Profes__2BC97F7C" FromRole="Professional" ToRole="Business" />
           <NavigationProperty Name="Review_Client" Relationship="Self.FK__Review_Cl__Profe__40C49C62" FromRole="Professional" ToRole="Review_Client" />
@@ -1003,6 +1026,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
           <EntitySet Name="Appointment_can_give_treatment" EntityType="Self.Appointment_can_give_treatment" />
           <EntitySet Name="Business" EntityType="Self.Business" />
           <EntitySet Name="Business_can_give_treatment" EntityType="Self.Business_can_give_treatment" />
+          <EntitySet Name="Business_Photos" EntityType="Self.Business_Photos" />
           <EntitySet Name="BusinessDiary" EntityType="Self.BusinessDiary" />
           <EntitySet Name="Category" EntityType="Self.Category" />
           <EntitySet Name="Client" EntityType="Self.Client" />
@@ -1105,12 +1129,13 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
               <MappingFragment StoreEntitySet="Appointment">
                 <ScalarProperty Name="Number_appointment" ColumnName="Number_appointment" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Start_time" ColumnName="Start_time" />
-                <ScalarProperty Name="End_time" ColumnName="End_time" />
                 <ScalarProperty Name="Is_client_house" ColumnName="Is_client_house" />
                 <ScalarProperty Name="Business_Number" ColumnName="Business_Number" />
                 <ScalarProperty Name="Appointment_status" ColumnName="Appointment_status" />
                 <ScalarProperty Name="ID_Client" ColumnName="ID_Client" />
+                <ScalarProperty Name="Start_Hour" ColumnName="Start_Hour" />
+                <ScalarProperty Name="End_Hour" ColumnName="End_Hour" />
+                <ScalarProperty Name="Type_Treatment_Number" ColumnName="Type_Treatment_Number" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1129,7 +1154,6 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
                 <ScalarProperty Name="Business_Number" ColumnName="Business_Number" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="AddressStreet" ColumnName="AddressStreet" />
-                <ScalarProperty Name="AddressHouseNumber" ColumnName="AddressHouseNumber" />
                 <ScalarProperty Name="AddressCity" ColumnName="AddressCity" />
                 <ScalarProperty Name="Is_client_house" ColumnName="Is_client_house" />
                 <ScalarProperty Name="Professional_ID_number" ColumnName="Professional_ID_number" />
@@ -1137,6 +1161,9 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
                 <ScalarProperty Name="phone" ColumnName="phone" />
                 <ScalarProperty Name="Facebook_link" ColumnName="Facebook_link" />
                 <ScalarProperty Name="Instagram_link" ColumnName="Instagram_link" />
+                <ScalarProperty Name="AddressHouseNumber" ColumnName="AddressHouseNumber" />
+                <ScalarProperty Name="LetCordinate" ColumnName="LetCordinate" />
+                <ScalarProperty Name="LongCordinate" ColumnName="LongCordinate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1148,6 +1175,16 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
                 <ScalarProperty Name="Business_Number" ColumnName="Business_Number" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Treatment_duration" ColumnName="Treatment_duration" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Business_Photos">
+            <EntityTypeMapping TypeName="igroup193_prodModel.Business_Photos">
+              <MappingFragment StoreEntitySet="Business_Photos">
+                <ScalarProperty Name="Business_number" ColumnName="Business_number" />
+                <ScalarProperty Name="url_photo" ColumnName="url_photo" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1180,13 +1217,14 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
                 <ScalarProperty Name="phone" ColumnName="phone" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="AddressStreet" ColumnName="AddressStreet" />
-                <ScalarProperty Name="AddressHouseNumber" ColumnName="AddressHouseNumber" />
                 <ScalarProperty Name="AddressCity" ColumnName="AddressCity" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="Facebook_link" ColumnName="Facebook_link" />
                 <ScalarProperty Name="Instagram_link" ColumnName="Instagram_link" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="AddressHouseNumber" ColumnName="AddressHouseNumber" />
+                <ScalarProperty Name="ProfilPic" ColumnName="ProfilPic" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1219,6 +1257,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
                 <ScalarProperty Name="AddressCity" ColumnName="AddressCity" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="token" ColumnName="token" />
+                <ScalarProperty Name="ProfilPic" ColumnName="ProfilPic" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

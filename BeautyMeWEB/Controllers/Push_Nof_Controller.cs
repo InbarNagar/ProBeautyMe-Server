@@ -16,7 +16,7 @@ namespace BeautyMeWEB.Controllers
     public class Push_Nof_Controller : ApiController
     {
 
-        private static Timer aTimer;
+        //private static Timer aTimer;
         public static object objectToSend;
 
         // [HttpPost]
@@ -124,7 +124,7 @@ namespace BeautyMeWEB.Controllers
             reader.Close();
             dataStream.Close();
             response.Close();
-            aTimer.Enabled = false;
+            //aTimer.Enabled = false;
 
         }
 

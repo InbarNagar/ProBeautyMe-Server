@@ -6,12 +6,13 @@
     </Key>
     <Property Name="Number_appointment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="Start_time" Type="Time" Nullable="false" Precision="7" />
-    <Property Name="End_time" Type="Time" Nullable="false" Precision="7" />
     <Property Name="Is_client_house" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="Business_Number" Type="Int32" Nullable="false" />
     <Property Name="Appointment_status" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="ID_Client" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Start_Hour" Type="Double" />
+    <Property Name="End_Hour" Type="Double" />
+    <Property Name="Type_Treatment_Number" Type="Int32" />
     <NavigationProperty Name="Appointment_can_give_treatment" Relationship="Self.FK__Appointme__Numbe__7EC1CEDB" FromRole="Appointment" ToRole="Appointment_can_give_treatment" />
     <NavigationProperty Name="Appointment_can_give_treatment1" Relationship="Self.FK__Appointme__Numbe__7FB5F314" FromRole="Appointment" ToRole="Appointment_can_give_treatment" />
     <NavigationProperty Name="Future_Appointment" Relationship="Self.FK__Future_Ap__Numbe__74444068" FromRole="Appointment" ToRole="Future_Appointment" />
@@ -41,11 +42,16 @@
     <Property Name="Business_Number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="AddressStreet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="AddressHouseNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="AddressCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Is_client_house" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Is_client_house" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
     <Property Name="Professional_ID_number" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Facebook_link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Instagram_link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="AddressHouseNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="LetCordinate" Type="Double" />
+    <Property Name="LongCordinate" Type="Double" />
     <NavigationProperty Name="Appointment" Relationship="Self.FK_Business_BusinessNumber" FromRole="Business" ToRole="Appointment" />
     <NavigationProperty Name="Professional" Relationship="Self.FK__Business__Profes__2AD55B43" FromRole="Business" ToRole="Professional" />
     <NavigationProperty Name="Professional1" Relationship="Self.FK__Business__Profes__2BC97F7C" FromRole="Business" ToRole="Professional" />
@@ -61,8 +67,29 @@
     <Property Name="Business_Number" Type="Int32" Nullable="false" />
     <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
     <Property Name="Treatment_duration" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="duration" Type="Double" />
     <NavigationProperty Name="Category" Relationship="Self.FK__Business___Categ__0662F0A3" FromRole="Business_can_give_treatment" ToRole="Category" />
     <NavigationProperty Name="Type_Treatment" Relationship="Self.FK__Business___Type___056ECC6A" FromRole="Business_can_give_treatment" ToRole="Type_Treatment" />
+  </EntityType>
+  <EntityType Name="Business_Photos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="Business_number" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="url_photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="BusinessDiary">
+    <Key>
+      <PropertyRef Name="Business_id" />
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="Start_time" />
+      <PropertyRef Name="End_time" />
+    </Key>
+    <Property Name="Business_id" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Start_time" Type="Double" Nullable="false" />
+    <Property Name="End_time" Type="Double" Nullable="false" />
   </EntityType>
   <EntityType Name="Category">
     <Key>
@@ -85,13 +112,14 @@
     <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="AddressStreet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="AddressHouseNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="AddressCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Facebook_link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Instagram_link" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="token" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AddressHouseNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ProfilPic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Appointment" Relationship="Self.FK_Client_ID_Client" FromRole="Client" ToRole="Appointment" />
     <NavigationProperty Name="Future_Appointment" Relationship="Self.FK__Future_Ap__Clien__725BF7F6" FromRole="Client" ToRole="Future_Appointment" />
     <NavigationProperty Name="Future_Appointment1" Relationship="Self.FK__Future_Ap__Clien__753864A1" FromRole="Client" ToRole="Future_Appointment" />
@@ -131,6 +159,7 @@
     <Property Name="AddressCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="token" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProfilPic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Business" Relationship="Self.FK__Business__Profes__2AD55B43" FromRole="Professional" ToRole="Business" />
     <NavigationProperty Name="Business1" Relationship="Self.FK__Business__Profes__2BC97F7C" FromRole="Professional" ToRole="Business" />
     <NavigationProperty Name="Review_Client" Relationship="Self.FK__Review_Cl__Profe__40C49C62" FromRole="Professional" ToRole="Review_Client" />
@@ -145,7 +174,6 @@
     <Property Name="On_time" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="Overall_rating" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Professional_ID_number" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="Client_ID_number" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="Business_Number" Type="Int32" Nullable="false" />
     <Property Name="Number_appointment" Type="Int32" />
@@ -454,6 +482,8 @@
     <EntitySet Name="Appointment_can_give_treatment" EntityType="Self.Appointment_can_give_treatment" />
     <EntitySet Name="Business" EntityType="Self.Business" />
     <EntitySet Name="Business_can_give_treatment" EntityType="Self.Business_can_give_treatment" />
+    <EntitySet Name="Business_Photos" EntityType="Self.Business_Photos" />
+    <EntitySet Name="BusinessDiary" EntityType="Self.BusinessDiary" />
     <EntitySet Name="Category" EntityType="Self.Category" />
     <EntitySet Name="Client" EntityType="Self.Client" />
     <EntitySet Name="Future_Appointment" EntityType="Self.Future_Appointment" />

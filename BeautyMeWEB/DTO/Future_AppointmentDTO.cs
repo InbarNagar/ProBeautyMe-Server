@@ -17,7 +17,7 @@ namespace BeautyMeWEB.DTO
         public int Number_appointment;
         public System.DateTime Date;
         public System.TimeSpan Start_time;
-        public System.TimeSpan End_time;
+        //public System.TimeSpan End_time;
         public string First_name_client;
         public string Last_name_client;
 

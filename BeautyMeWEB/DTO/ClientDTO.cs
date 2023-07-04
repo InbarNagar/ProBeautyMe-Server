@@ -22,5 +22,6 @@ namespace BeautyMeWEB.DTO
         public string Instagram_link;
         public string userType;
         public string token;
+        public string ProfilPic;
     }
 }

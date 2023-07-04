@@ -6,12 +6,13 @@
     </Key>
     <Property Name="Number_appointment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Date" Type="date" Nullable="false" />
-    <Property Name="Start_time" Type="time" Precision="7" Nullable="false" />
-    <Property Name="End_time" Type="time" Precision="7" Nullable="false" />
     <Property Name="Is_client_house" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="Business_Number" Type="int" Nullable="false" />
     <Property Name="Appointment_status" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="ID_Client" Type="nchar" MaxLength="10" />
+    <Property Name="Start_Hour" Type="float" />
+    <Property Name="End_Hour" Type="float" />
+    <Property Name="Type_Treatment_Number" Type="int" />
   </EntityType>
   <EntityType Name="Appointment_can_give_treatment">
     <Key>
@@ -30,11 +31,16 @@
     <Property Name="Business_Number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="AddressStreet" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="AddressHouseNumber" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="AddressCity" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Is_client_house" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Is_client_house" Type="nvarchar" MaxLength="3" />
     <Property Name="Professional_ID_number" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="About" Type="nvarchar(max)" />
+    <Property Name="phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Facebook_link" Type="varchar(max)" />
+    <Property Name="Instagram_link" Type="varchar(max)" />
+    <Property Name="AddressHouseNumber" Type="varchar" MaxLength="10" />
+    <Property Name="LetCordinate" Type="float" />
+    <Property Name="LongCordinate" Type="float" />
   </EntityType>
   <EntityType Name="Business_can_give_treatment">
     <Key>
@@ -47,13 +53,28 @@
     <Property Name="Business_Number" Type="int" Nullable="false" />
     <Property Name="Price" Type="money" Nullable="false" />
     <Property Name="Treatment_duration" Type="time" Precision="7" Nullable="false" />
+    <Property Name="duration" Type="float" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="Business_Photos">
-          <Property Name="Business_number" Type="nchar" MaxLength="10" />
-          <Property Name="url_photo" Type="varchar(max)" />
-        </EntityType>-->
+  <EntityType Name="Business_Photos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="Business_number" Type="nchar" MaxLength="10" />
+    <Property Name="url_photo" Type="varchar(max)" />
+    <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BusinessDiary">
+    <Key>
+      <PropertyRef Name="Business_id" />
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="Start_time" />
+      <PropertyRef Name="End_time" />
+    </Key>
+    <Property Name="Business_id" Type="int" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Start_time" Type="float" Nullable="false" />
+    <Property Name="End_time" Type="float" Nullable="false" />
+  </EntityType>
   <EntityType Name="Category">
     <Key>
       <PropertyRef Name="Category_Number" />
@@ -73,13 +94,14 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
     <Property Name="phone" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Email" Type="varchar(max)" Nullable="false" />
     <Property Name="AddressStreet" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="AddressHouseNumber" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="AddressCity" Type="nvarchar(max)" Nullable="false" />
     <Property Name="password" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="Facebook_link" Type="varchar(max)" />
     <Property Name="Instagram_link" Type="varchar(max)" />
     <Property Name="Image" Type="image" />
     <Property Name="token" Type="varchar" MaxLength="50" />
+    <Property Name="AddressHouseNumber" Type="varchar" MaxLength="10" />
+    <Property Name="ProfilPic" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Future_Appointment">
     <Key>
@@ -110,6 +132,7 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
     <Property Name="AddressCity" Type="nvarchar(max)" Nullable="false" />
     <Property Name="password" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="token" Type="varchar" MaxLength="50" />
+    <Property Name="ProfilPic" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Review_Business">
     <Key>
@@ -121,7 +144,6 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
     <Property Name="On_time" Type="nchar" MaxLength="10" />
     <Property Name="Overall_rating" Type="nchar" MaxLength="10" />
     <Property Name="Comment" Type="nvarchar(max)" />
-    <Property Name="Professional_ID_number" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="Client_ID_number" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="Business_Number" Type="int" Nullable="false" />
     <Property Name="Number_appointment" Type="int" />
@@ -420,6 +442,8 @@ warning 6013: The table/view 'igroup193_prod.dbo.Business_Photos' does not have 
     <EntitySet Name="Appointment_can_give_treatment" EntityType="Self.Appointment_can_give_treatment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Business" EntityType="Self.Business" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Business_can_give_treatment" EntityType="Self.Business_can_give_treatment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Business_Photos" EntityType="Self.Business_Photos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BusinessDiary" EntityType="Self.BusinessDiary" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Future_Appointment" EntityType="Self.Future_Appointment" Schema="dbo" store:Type="Tables" />

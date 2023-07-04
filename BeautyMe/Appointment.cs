@@ -27,12 +27,13 @@ namespace BeautyMe
     
         public int Number_appointment { get; set; }
         public System.DateTime Date { get; set; }
-        public System.TimeSpan Start_time { get; set; }
-        public System.TimeSpan End_time { get; set; }
         public string Is_client_house { get; set; }
         public int Business_Number { get; set; }
         public string Appointment_status { get; set; }
         public string ID_Client { get; set; }
+        public Nullable<double> Start_Hour { get; set; }
+        public Nullable<double> End_Hour { get; set; }
+        public Nullable<int> Type_Treatment_Number { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Appointment_can_give_treatment> Appointment_can_give_treatment { get; set; }

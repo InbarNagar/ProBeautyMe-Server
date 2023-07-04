@@ -17,6 +17,7 @@ using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using System.Data.Entity.Validation;
 
 namespace BeautyMeWEB.Controllers
 {
@@ -33,8 +34,8 @@ namespace BeautyMeWEB.Controllers
             {
                 Number_appointment = x.Number_appointment,
                 Date = x.Date,
-                Start_time = x.Start_time,
-                End_time = x.End_time,
+                Start_Hour = (double)x.Start_Hour,
+                End_Hour = (double)x.Start_Hour,
                 Is_client_house = x.Is_client_house,
                 Business_Number = x.Business_Number,
                 Appointment_status = x.Appointment_status,
@@ -54,24 +55,52 @@ namespace BeautyMeWEB.Controllers
             {
                 Number_appointment = x.Number_appointment,
                 Date = x.Date,
-                Start_time = x.Start_time,
-                End_time = x.End_time,
+                Start_Hour = (double)x.Start_Hour,
+                End_Hour = (double)x.Start_Hour,
                 Is_client_house = x.Is_client_house,
                 Business_Number = x.Business_Number,
                 Appointment_status = x.Appointment_status,
                 ID_Client = x.ID_Client,
-                First_name=x.Client.First_name,
-                Last_name=x.Client.Last_name,
-                phone=x.Client.phone,
-                Email=x.Client.Email
-                
             }).ToList();
             if (AllAppointment != null)
                 return Request.CreateResponse(HttpStatusCode.OK, AllAppointment);
             else
                 return Request.CreateResponse(HttpStatusCode.NotFound);
         }
+        [HttpGet]
+        [Route("api/Appointment/AllAppointmentForBussines/{Business_Number}")]
+        public HttpResponseMessage GetAllAppointmentForClient(int Business_Number)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["BeautyMeDB"].ConnectionString);
+            string query = @"select a.*,c.*
+                            from Appointment a inner join Client c on c.ID_number=a.ID_Client
+                            where a.Business_Number=@Business_Number and a.Appointment_status='Appointment_ended'";
 
+            SqlDataAdapter adpter = new SqlDataAdapter(query, con);
+            adpter.SelectCommand.Parameters.AddWithValue("@Business_Number", Business_Number);
+            DataSet ds = new DataSet();
+            adpter.Fill(ds, "Appointment");
+            DataTable dt = ds.Tables["Appointment"];
+            return Request.CreateResponse(HttpStatusCode.OK, dt);
+        }
+        //מחזיר את כל התורים של בעל העסק עם פרטי לקוח
+        [HttpGet]
+        [Route("api/Appointment/GetAllAppointmentForProWithClient/{Business_Number}")]
+        public HttpResponseMessage GetAllAppointmentForProWithClient(int Business_Number)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["BeautyMeDB"].ConnectionString);
+            string query = @"select a.*,c.*,t.*
+                            from Appointment a inner join Client c on c.ID_number=a.ID_Client
+                            left join Type_Treatment t on t.Type_treatment_Number=a.Type_treatment_Number
+                            where a.Business_Number=@Business_Number";
+
+            SqlDataAdapter adpter = new SqlDataAdapter(query, con);
+            adpter.SelectCommand.Parameters.AddWithValue("@Business_Number", Business_Number);
+            DataSet ds = new DataSet();
+            adpter.Fill(ds, "Appointment");
+            DataTable dt = ds.Tables["Appointment"];
+            return Request.CreateResponse(HttpStatusCode.OK, dt);
+        }
 
         // Post: api/Post
         [HttpPost]
@@ -84,11 +113,12 @@ namespace BeautyMeWEB.Controllers
                 {
                     //Number_appointment = x.Number_appointment,
                     Date = x.Date,
-                    Start_time = x.Start_time,
-                    End_time = x.End_time,
+                    Start_Hour = x.Start_Hour,
+                    End_Hour = x.End_Hour,
                     Is_client_house = x.Is_client_house,
                     Business_Number = x.Business_Number,
                     Appointment_status = x.Appointment_status,
+                    Type_Treatment_Number=x.Type_Treatment_Number
 
                 };
                 db.Appointment.Add(newAppointment);
@@ -101,24 +131,55 @@ namespace BeautyMeWEB.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Error occurred while adding new Appointment to the database: " + ex.InnerException.InnerException.Message);
             }
         }
+        //[HttpPost]
+        //[Route("api/Appointment/ClientToAppointment")]
+        //public HttpResponseMessage ClientToAppointment([FromBody] AppointmentDTO x)
+        //{
+        //    Appointment appointment = db.Appointment.Where(z=>z.Number_appointment== x.Number_appointment && z.Appointment_status== "Available" && z.ID_Client==null).FirstOrDefault();
+        //    if (appointment != null)
+        //    {
+        //        appointment.ID_Client= x.ID_Client;
+        //        appointment.Appointment_status = "Awaiting_approval";
+        //        db.SaveChanges();
+        //        return Request.CreateResponse(HttpStatusCode.OK, $"{x.ID_Client} is assigned to {appointment.Number_appointment}");
+        //    }
+        //    else
+        //    {
+        //        return Request.CreateResponse(HttpStatusCode.NotFound, "error");
+
+        //    }
+        //}
+
         [HttpPost]
-        [Route("api/Appointment/ClientToAppointment")]
-        public HttpResponseMessage ClientToAppointment([FromBody] AppointmentDTO x)
+        [Route("api/Appointment/NewAppointmentByClient")]
+        public HttpResponseMessage NewAppointmentByClient([FromBody] AppointmentDTO x)
         {
-            Appointment appointment = db.Appointment.Where(z=>z.Number_appointment== x.Number_appointment && z.Appointment_status== "Available" && z.ID_Client==null).FirstOrDefault();
-            if (appointment != null)
+
+            Appointment a = new Appointment()
             {
-                appointment.ID_Client= x.ID_Client;
-                appointment.Appointment_status = "Awaiting_approval";
+                Date=x.Date,
+                ID_Client = x.ID_Client,
+                Appointment_status = "Awaiting_approval",
+                End_Hour = x.End_Hour,
+                Start_Hour = x.Start_Hour,
+                Business_Number = x.Business_Number,
+                Is_client_house = x.Is_client_house,
+                Type_Treatment_Number= x.Type_Treatment_Number
+            };
+            if (x != null)
+            {
+                db.Appointment.Add(a);
                 db.SaveChanges();
-                return Request.CreateResponse(HttpStatusCode.OK, $"{x.ID_Client} is assigned to {appointment.Number_appointment}");
+                return Request.CreateResponse(HttpStatusCode.OK, a.Number_appointment);
             }
             else
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound, "error");
-
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, $"{x}");
             }
+
         }
+
+
         ////תורים ללקוח
         //[HttpGet]
         //[Route("api/Appointment/AllAppointmentForClient/{ID_Client}")]
@@ -158,8 +219,8 @@ namespace BeautyMeWEB.Controllers
             {
                 //AppointmentToUpdate.Number_appointment = x.Number_appointment;
                 AppointmentToUpdate.Date = x.Date;
-                AppointmentToUpdate.Start_time = x.Start_time;
-                AppointmentToUpdate.End_time = x.End_time;
+                AppointmentToUpdate.Start_Hour = x.Start_Hour;
+                AppointmentToUpdate.End_Hour = x.End_Hour;
                 AppointmentToUpdate.Is_client_house = x.Is_client_house;
                 AppointmentToUpdate.Business_Number = x.Business_Number;
                 AppointmentToUpdate.Appointment_status = x.Appointment_status;
@@ -193,22 +254,85 @@ namespace BeautyMeWEB.Controllers
             return Ok("הנתונים נמחקו בהצלחה.");  // החזרת תשובה מתאימה לפי המצב
         }
         // קונטרולר לשינוי הסטטוס לפי למאושר
+        //[HttpPost]
+        //[Route("api/Appointment/changeStatus/{Number_appointment}")]
+        //public HttpResponseMessage ChangeStatusByClient(int Number_appointment)
+        //{
+        //    try
+        //    {
+        //        Appointment AppointmentToChangeStatus = db.Appointment.Where(x => x.Number_appointment == Number_appointment && x.Appointment_status == "Awaiting_approval").FirstOrDefault();
+        //        if (AppointmentToChangeStatus == null)
+        //        {
+        //            return Request.CreateResponse(HttpStatusCode.NotFound, $"${Number_appointment} is not found!");
+        //        }
+        //        else
+        //        {
+        //            AppointmentToChangeStatus.Appointment_status = "Confirmed";
+        //            db.SaveChanges();
+        //            return Request.CreateResponse(HttpStatusCode.OK, $"{AppointmentToChangeStatus.Number_appointment} updated in the dataBase");
+        //        }
+        //    }
+        //    catch (DbUpdateException ex)
+        //    {
+        //        // log the detailed exception message to the console
+        //        Console.WriteLine(ex.InnerException?.Message);
+        //        return Request.CreateResponse(HttpStatusCode.InternalServerError, "An error occurred while updating the entries.");
+        //    }
+
+        //}
         [HttpPost]
         [Route("api/Appointment/changeStatus/{Number_appointment}")]
-        public HttpResponseMessage ChangeStatusByClient(int Number_appointment)
+        public HttpResponseMessage UpdateStatus(int Number_appointment)
         {
-            Appointment AppointmentToChangeStatus = db.Appointment.Where(x => x.Number_appointment == Number_appointment && x.Appointment_status== "Awaiting_approval").FirstOrDefault();
-            if (AppointmentToChangeStatus == null)
+            try
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound, $"${Number_appointment} is not found!");
+                Appointment a = db.Appointment.Where(x => x.Number_appointment == Number_appointment && x.Appointment_status == 
+                "Awaiting_Approval").FirstOrDefault();
+                if (a != null)
+                {
+                    a.Appointment_status = "Confirmed";
+                    db.SaveChanges();
+                    return Request.CreateResponse(HttpStatusCode.OK, $"{a.Number_appointment} updated in the dataBase");
+                }
+                else
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, $"{Number_appointment} was not found");
+                }
             }
-            else
+            catch (DbUpdateException ex)
             {
-                AppointmentToChangeStatus.Appointment_status = "Confirmed";
+                foreach(DbEntityEntry entry in ex.Entries)
+                {
+                    Console.WriteLine("error in entry - " + entry.Entity.GetType().Name);
+                    Console.WriteLine("entity state - "+ entry.State);
+                    Console.WriteLine("*********");
+                    foreach(string prop in entry.CurrentValues.PropertyNames)
+                    {
+                        Console.WriteLine("for column - "  +prop + ", value - " + entry.CurrentValues[prop]);
+                    }
+                    Console.WriteLine("==========");
+                }
+                // Log the exception details to the debug output
+                System.Diagnostics.Debug.WriteLine(ex);
+                throw;  // rethrow the exception for the framework to handle
+            }
+        }
+        //ניסיוני
+        [HttpPut]
+        [Route("api/Appointment/UpdateToConfirm/{Number_appointment}")]
+        public HttpResponseMessage UpdateToConfirm(int Number_appointment)
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["BeautyMeDB"].ConnectionString);
+            string query = @"UPDATE Appointment
+                            SET Appointment_Status = 'Confirmed'
+                            WHERE Number_appointment = @Number_appointment AND Appointment_Status = 'Awaiting_Approval';";
 
-                db.SaveChanges();
-                return Request.CreateResponse(HttpStatusCode.OK, $"{AppointmentToChangeStatus.Number_appointment} updated in the dataBase");
-            }
+            SqlDataAdapter adpter = new SqlDataAdapter(query, con);
+            adpter.SelectCommand.Parameters.AddWithValue("@Number_appointment", Number_appointment);
+            DataSet ds = new DataSet();
+            adpter.Fill(ds, "Appointment");
+            DataTable dt = ds.Tables["Appointment"];
+            return Request.CreateResponse(HttpStatusCode.OK, dt);
         }
 
         [HttpPost]
@@ -255,15 +379,11 @@ namespace BeautyMeWEB.Controllers
             {
                 Number_appointment = a.Number_appointment,
                 Date = a.Date,
-                Start_time = a.Start_time,
-                End_time = a.End_time,
+                Start_Hour = (double)a.Start_Hour,
+                End_Hour = (double)a.Start_Hour,
                 Is_client_house = a.Is_client_house,
                 Business_Number = a.Business_Number,
-                Appointment_status = a.Appointment_status,
-                AddressCity = a.Business.AddressCity,
-                AddressHouseNumber = a.Business.AddressHouseNumber,
-                AddressStreet = a.Business.AddressStreet,
-                BusinessName = a.Business.Name
+                Appointment_status = a.Appointment_status
             }).ToList();
             if (AllAppointment != null)
                 return Request.CreateResponse(HttpStatusCode.OK, AllAppointment);
@@ -302,10 +422,9 @@ namespace BeautyMeWEB.Controllers
         {
             AppointmentDTO appointment = db.Appointment.Where(x => x.Number_appointment == appointment_number).Select(a => new AppointmentDTO
             {
-                BusinessName = a.Business.Name,
                 Date = a.Date,
-                Start_time = a.Start_time,
-                End_time = a.End_time,
+                Start_Hour = (double)a.Start_Hour,
+                End_Hour = (double)a.Start_Hour,
                 Is_client_house = a.Is_client_house,
                 Business_Number = a.Business_Number,
                 Appointment_status = a.Appointment_status
@@ -315,8 +434,6 @@ namespace BeautyMeWEB.Controllers
             else
                 return Request.CreateResponse(HttpStatusCode.NotFound);
         }
-
-
     }
 }
 

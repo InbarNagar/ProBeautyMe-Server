@@ -31,13 +31,14 @@ namespace BeautyMe
         public string phone { get; set; }
         public string Email { get; set; }
         public string AddressStreet { get; set; }
-        public string AddressHouseNumber { get; set; }
         public string AddressCity { get; set; }
         public string password { get; set; }
         public string Facebook_link { get; set; }
         public string Instagram_link { get; set; }
         public byte[] Image { get; set; }
         public string token { get; set; }
+        public string AddressHouseNumber { get; set; }
+        public string ProfilPic { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Appointment> Appointment { get; set; }

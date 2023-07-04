@@ -133,7 +133,8 @@ namespace BeautyMeWEB.Controllers
                     AddressStreet = x.AddressStreet,
                     AddressHouseNumber = x.AddressHouseNumber,
                     AddressCity = x.AddressCity,
-                    password = x.password
+                    password = x.password,
+                    ProfilPic = x.ProfilPic,
                 };
                 db.Professional.Add(newProfessional);
                 db.SaveChanges();
